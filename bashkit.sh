@@ -30,7 +30,7 @@ bashkit() {
 		cd $BASHKIT_DIR;
 		git pull
 		cd -;
-		echo "[bashkit] Try again"
+		logWarn "[bashkit] Try again"
 		exit 1
 	fi
 }
