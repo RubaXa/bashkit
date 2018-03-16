@@ -37,8 +37,8 @@ riskRemove() {
 	name="$1"
 	branch=$(default "$2" "trb");
 
-	echo -n $(logInfo "- Risk remove $branch -> $name ..");
-	`risk-deploy-clear --branch $branch --clear-file $name >/dev/null 2>&`;
+	echo -n $(logInfo "- Risk remove "$name" ($branch) ..");
+	`risk-deploy-clear --branch $branch --clear-file $name >/dev/null 2>\&`;
 	echo "" $(executeStatus $?);
 }
 
