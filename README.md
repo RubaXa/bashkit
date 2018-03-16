@@ -100,10 +100,3 @@ echo $(log "done" "All files removed")
 ### `time.sh`
 
 - `now()` — current timestamp
-
----
-
-### `risk.sh`
-
-- `riskCreate([gitBranchName = master])`
--

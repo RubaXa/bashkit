@@ -38,6 +38,6 @@ bashkit() {
 bashkit;
 
 if [[ "$(getArg version)" == $Y ]]; then
-	logDone "VERSION: $newVer $(emojiStatus done)"
+	logDone "[bashkit] VERSION: $newVer $(emojiStatus done)"
 	exit 0;
 fi
