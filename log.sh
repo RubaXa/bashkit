@@ -7,11 +7,9 @@ LOG_LEVEL_INFO=$((1<<4));
 LOG_LEVEL_VERBOSE=$((1<<5));
 LOG_LEVEL=$(($LOG_LEVEL_ERR | $LOG_LEVEL_DONE | $LOG_LEVEL_WARN | $LOG_LEVEL_INFO));
 
-for arg in $@; do
-	if [[ $arg == "--verbose" ]]; then
-		LOG_LEVEL=$(($LOG_LEVEL | $LOG_LEVEL_VERBOSE));
-	fi
-done
+if [[ $(getArg verbose) == $Y ]]; then
+	LOG_LEVEL=$(($LOG_LEVEL | $LOG_LEVEL_VERBOSE));
+fi
 
 log() {
 	color=$COLOR_CLR;

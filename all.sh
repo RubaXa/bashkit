@@ -15,5 +15,5 @@ source "$BASHKIT_DIR/risk.sh";
 
 #LOG_LEVEL=$(($LOG_LEVEL | $LOG_LEVEL_VERBOSE));
 
-# AutoUpdater
-source "$BASHKIT_DIR/updater.sh";
+# AutoUpdater and etc
+source "$BASHKIT_DIR/bashkit.sh";

@@ -1,7 +1,11 @@
+#!/bin/bash
+
 Y="Y"
 N="N"
 SECOND=$((1))
 HOUR=$(($SECOND * 60));
+
+ARGS=($@);
 
 default() {
 	if [[ $1 == "" ]]; then
@@ -18,4 +22,13 @@ required() {
 	else
 		echo "$1";
 	fi
+}
+
+getArg() {
+
+	for argName in ${ARGS[@]}; do
+		if [[ "--$1" == "$argName" ]]; then
+			echo $Y;
+		fi
+	done
 }

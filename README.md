@@ -18,6 +18,7 @@ logInfo "Hello!" $(emojiStatus "ok");
 
 - `$Y` - `"Y"`
 - `$N` - `"N"`
+- `getArg(name)` — get commandline argument value [or `$Y` (@todo)]
 - `default(value, defaultValue)`
 - `required(value, errorMessage)`
 

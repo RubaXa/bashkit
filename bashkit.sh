@@ -2,7 +2,7 @@
 
 BASHKIT_REFRESH_TIME=$HOUR;
 
-bashkitUpdater() {
+bashkit() {
 	tmpfile="$BASHKIT_DIR/.last-update";
 	time=$(now);
 	newVer="";
@@ -33,6 +33,10 @@ bashkitUpdater() {
 		logDone "[bashkit] Try again $(emojiStatus done)"
 		exit 1
 	fi
+
+	if [[ "$(getArg version)" == $Y ]]; then
+		logDone "VERSION: $newVer $(emojiStatus done)"
+	fi
 }
 
-bashkitUpdater;
+bashkit;
