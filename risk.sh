@@ -35,9 +35,11 @@ riskAlpha() {
 
 riskRemove() {
 	name="$1"
-	branch=$(default "$2" "trb")
+	branch=$(default "$2" "trb");
 
-	risk-deploy-clear $RISK_FLAGS --branch $branch --clear-file $name
+	echo -n $(logInfo "- Risk remove $branch -> $name ..");
+	`risk-deploy-clear --branch $branch --clear-file $name >/dev/null 2>&`;
+	echo "" $(executeStatus $?);
 }
 
 riskAutoRemove() {
@@ -55,7 +57,7 @@ riskAutoRemove() {
 				fi
 
 				if [[ "$name" != "" ]]; then
-					execute "risk-deploy-clear --branch $branch --clear-file $name";
+					riskRemove $name $branch;
 				fi
 
 				if [[ "$line" =~ (.).\[.{3,}\].(.+) ]]; then

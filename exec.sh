@@ -2,15 +2,17 @@
 
 execute() {
 	echo -n $(logInfo "- Execute \`$@\` ..")
-	res=`$@`
-
-	if [ $? -eq 0 ]; then
-		echo "" $(logInfo "OK" $(emojiStatus ok))
-	else
-		echo "" $(logErr "FAILED" $(emojiStatus err))
-	fi
-
+	res=`$@ >/dev/null 2>&1`;
+	echo "" $(executeStatus $?)
 	logVerbose $res
+}
+
+executeStatus() {
+	if [ $1 -eq 0 ]; then
+		echo $(logInfo "OK" $(emojiStatus ok))
+	else
+		echo $(logErr "FAILED" $(emojiStatus err))
+	fi
 }
 
 executeIf() {
