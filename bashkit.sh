@@ -27,10 +27,10 @@ bashkit() {
 
 	if [[ $BASHKIT_VERSION != $newVer ]]; then
 		logWarn "[bashkit] Switch to new version: $newVer"
-		execute "cd $BASHKIT_DIR";
-		execute "git pull";
-		execute "cd -";
-		logDone "[bashkit] Try again $(emojiStatus done)"
+		cd $BASHKIT_DIR;
+		git pull
+		cd -;
+		echo "[bashkit] Try again"
 		exit 1
 	fi
 
