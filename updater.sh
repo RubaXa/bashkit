@@ -1,14 +1,37 @@
 #!/bin/bash
 
+BASHKIT_REFRESH_TIME=$HOUR;
+
 bashkitUpdater() {
+	tmpfile="$BASHKIT_DIR/.last-update";
+	time=$(now);
+	newVer="";
+
 	logVerbose "[bashkit] Current version: $BASHKIT_VERSION"
 
-	raw=`curl -s https://raw.githubusercontent.com/RubaXa/bashkit/master/all.sh`
-	ver=$(stringGetMatch 'BASHKIT_VERSION="([^"]+)' $raw)
-	logVerbose "[bashkit] Remote version: $ver"
+	if [ -f $tmpfile ]; then
+		prevTime=`cat $tmpfile`;
+		if (($time - $prevTime < $BASHKIT_REFRESH_TIME)); then
+			logVerbose "[bashkit] Skip checking version"
+			newVer=$BASHKIT_VERSION;
+		fi
+	fi
 
-	if [[ $BASHKIT_VERSION != $ver ]]; then
-		logWarn "[bashkit] Switch to new version: $ver"
+	if [[ "$newVer" == "" ]]; then
+		raw=`curl -s https://raw.githubusercontent.com/RubaXa/bashkit/master/all.sh`
+		newVer=$(stringGetMatch 'BASHKIT_VERSION="([^"]+)' $raw)
+		echo "$time" > $tmpfile;
+	fi
+
+	logVerbose "[bashkit] Remote version: $newVer"
+
+	if [[ $BASHKIT_VERSION != $newVer ]]; then
+		logWarn "[bashkit] Switch to new version: $newVer"
+		execute "cd $BASHKIT_DIR";
+		execute "git pull";
+		execute "cd -";
+		logDone "[bashkit] Try again $(emojiStatus done)"
+		exit 1
 	fi
 }
 

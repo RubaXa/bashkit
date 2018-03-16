@@ -1,5 +1,7 @@
 Y="Y"
 N="N"
+SECOND=$((1))
+HOUR=$(($SECOND * 60));
 
 default() {
 	if [[ $1 == "" ]]; then
