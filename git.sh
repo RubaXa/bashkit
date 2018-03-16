@@ -25,3 +25,5 @@ gitSwitchBranch() {
 	needSwicth="$(gitIsCurrentBranch $branch)";
 	executeIfNot $needSwicth "git checkout $branch 2>/dev/null || git checkout -b $branch origin/$branch"
 }
+
+GIT_BRANCH=$(gitCurrentBranch)

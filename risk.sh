@@ -3,7 +3,7 @@
 RISK_FLAGS="";
 
 riskCreate() {
-	branch=$(default "$1" "master");
+	branch=$(default "$1" "$GIT_BRANCH");
 	logInfo "- Create risk for git-branch: $branch (risk flags: $(default "${RISK_FLAGS}" '[[empty]]'))";
 	gitFetchAll;
 	gitSwitchBranch $branch;
@@ -13,7 +13,7 @@ riskCreate() {
 
 riskPush() {
 	name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
-	branch=$(required "$2" "[riskPush] Risk branch must be defined (second argument)");
+	branch=$(required "$2" "[riskPush] Risk-branch must be defined (second argument)");
 
 	logInfo "- Risk push: $name -> $branch";
 	risk-deploy-push $RISK_FLAGS --push-to-branch $branch --push-filename $name;
