@@ -1,5 +1,6 @@
-bash-assist
+~/.bashkit/
 -----------
+It is this toolset for the developing bash scripts.
 
 ### Usage
 ```sh
