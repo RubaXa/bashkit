@@ -33,10 +33,11 @@ bashkit() {
 		echo "[bashkit] Try again"
 		exit 1
 	fi
-
-	if [[ "$(getArg version)" == $Y ]]; then
-		logDone "VERSION: $newVer $(emojiStatus done)"
-	fi
 }
 
 bashkit;
+
+if [[ "$(getArg version)" == $Y ]]; then
+	logDone "VERSION: $newVer $(emojiStatus done)"
+	exit 0;
+fi
