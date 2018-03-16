@@ -4,14 +4,13 @@ emojiListOK=(👍 👊 🤘 👌 💪 ✨ 🌟 🏅 🎖);
 emojiListError=(💩 😱 😡 💔 🚨 💥);
 emojiListDone=(🎀 💎 🍺 🎂 🍬 🏆 🎯 💖);
 
-# Get Emoji by state
 emojiStatus() {
 	if [[ "$@" == "ok" ]]; then
-		list=$emojiListOK;
+		list=(${emojiListOK[@]});
 	elif [[ "$@" == "err" ]]; then
-		list=$emojiListError;
+		list=(${emojiListError[@]});
 	else
-		list=$emojiListDone;
+		list=(${emojiListDone[@]});
 	fi
 
 	idx=$(( $RANDOM % ${#list[*]} ))

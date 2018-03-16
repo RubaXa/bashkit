@@ -10,4 +10,5 @@ source "./git.sh";
 source "./string.sh";
 source "./risk.sh";
 
+#LOG_LEVEL=$(($LOG_LEVEL | $LOG_LEVEL_VERBOSE));
 riskCreate;

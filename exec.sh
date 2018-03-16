@@ -1,7 +1,7 @@
 #!/bin/bash
 
 execute() {
-	echo -n "" $(logInfo "- Execute \`$@\` ..")
+	echo -n $(logInfo "- Execute \`$@\` ..")
 	res=`$@`
 
 	if [ $? -eq 0 ]; then
@@ -19,7 +19,7 @@ executeIf() {
 	if [[ $1 == $Y ]]; then
 		execute $cmd
 	else
-		logVerbose " - Execute: \`$cmd\` .. SKIPPED"
+		logVerbose "- Execute: \`$cmd\` .. SKIPPED"
 	fi
 }
 
