@@ -5,6 +5,7 @@ bash-assist
 ```sh
 #!/bin/bash
 
+if [ ! -d ~/.bashkit/ ]; then echo 'Install `~/.bashkit/`'; git clone git@github.com:RubaXa/bashkit.git ~/.bashkit; fi
 source "~/.bashkit/all.sh"
 
 logInfo "Hello!" $(emojiStatus "ok");
