@@ -1,6 +1,6 @@
 ~/.bashkit/
 -----------
-It is this toolset for the developing bash scripts.
+It is the toolset for the developing bash scripts.
 
 ### Usage
 ![iterm2](https://habrastorage.org/webt/xd/2e/pt/xd2eptkfqtbqn-b2jn6ocylwgdi.png)
