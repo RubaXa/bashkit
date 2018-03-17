@@ -9,7 +9,7 @@ gitFetchAll() {
 }
 
 gitCurrentBranch() {
-	stringGetMatch 'branch[[:blank:]]([a-zA-Z0-9_-]+)' $(git status)
+	stringGetMatch 'branch[[:blank:]]([a-zA-Z0-9_-]+)' $(git status >/dev/null 2>&1)
 }
 
 gitIsCurrentBranch() {

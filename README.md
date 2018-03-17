@@ -3,13 +3,38 @@
 It is this toolset for the developing bash scripts.
 
 ### Usage
+![iterm2](https://habrastorage.org/webt/xd/2e/pt/xd2eptkfqtbqn-b2jn6ocylwgdi.png)
+
 ```sh
 #!/bin/bash
 
-if [ ! -d ~/.bashkit/ ]; then echo 'Install `~/.bashkit/`'; git clone git@github.com:RubaXa/bashkit.git $HOME/.bashkit; fi
+if [ ! -d $HOME/.bashkit/ ]; then echo 'Install `~/.bashkit/`'; git clone git@github.com:RubaXa/bashkit.git $HOME/.bashkit; fi
 source "$HOME/.bashkit/all.sh";
 
-logInfo "Hello!" $(emojiStatus "ok");
+inputRead "Enter %username%:" name;
+hrLine $(logDone "Hi, $name" $(emojiStatus "ok"));
+
+inputReadYesNo "Are you wish to play even/odd?" game $Y;
+if [[ $game == $Y ]]; then
+	echo "";
+
+	while : ; do
+		inputReadChar "Even/Odd (e/o)?:" ans
+		num=$RANDOM;
+		echo -n "Number $num is" ""
+
+		if (( $num % 2 == 0 )); then echo -n "Even!"; res="e";
+		else echo -n "Odd!"; res="o"; fi
+
+		if [[ $res == $ans ]]; then
+			echo "" $(colorize $COLOR_DONE "You WIN!") $(emojiStatus done);
+		else
+			echo "" $(colorize $COLOR_ERR "You LOOSE!") $(emojiStatus err);
+		fi
+
+		echo ""
+	done
+fi
 ```
 
 ---
@@ -18,9 +43,10 @@ logInfo "Hello!" $(emojiStatus "ok");
 
 - `$Y` - `"Y"`
 - `$N` - `"N"`
-- `getArg(name)` — get commandline argument value [or `$Y` (@todo)]
+- `getArg(name)` — get commandline an argument value
 - `default(value, defaultValue)`
 - `required(value, errorMessage)`
+- `assignVar(ref, val)`
 
 ---
 
@@ -36,18 +62,19 @@ echo "Wow" $(emojiStatus ok);
 
 ### `colors.sh`
 
-#### Types
+#### const
 - `$COLOR_RESET` or `$COLOR_CLR`
+- `$COLOR_MSG`
 - `$COLOR_ERR`
 - `$COLOR_DONE`
 - `$COLOR_WARN`
 - `$COLOR_INFO`
+- `$COLOR_VAR`
 - `$COLOR_VERBOSE`
 
-#### `colorize(type, text)`
-```sh
-echo $(colorize $COLOR_ERR "System error!")
-```
+#### Color methods
+- `colorize(color, text)`
+- `colorRemove(text)`
 
 ---
 
@@ -67,11 +94,12 @@ LOG_LEVEL=$(($LOG_LEVEL | $LOG_LEVEL_VERBOSE));
 
 #### `log(type, ...rest)`
 ```sh
-# Types: err, done, info, warn, verbose
+# Types: msg, err, done, info, warn, verbose
 echo $(log "done" "All files removed")
 ```
 
 #### Shortcuts
+ - `logMsg(...rest)`
  - `logErr(...rest)`
  - `logDone(...rest)`
  - `logInfo(...rest)`
@@ -89,6 +117,14 @@ echo $(log "done" "All files removed")
 
 ---
 
+### `string.sh`
+
+- `stringGetMatch(regexp, text)`
+- `stringTrim(text)`
+- `stringLength(text)` — without color codes
+
+---
+
 ### `exec.sh`
 
 - `execute(cmd)`
@@ -100,3 +136,20 @@ echo $(log "done" "All files removed")
 ### `time.sh`
 
 - `now()` — current timestamp
+
+---
+
+### `input.sh`
+
+- `inputRead(msg, varName)`
+- `inputReadSecure(msg, varName)`
+- `inputReadChar(msg, varName)`
+- `inputReadYesNo(msg, varName[[, defaultAnswer = Y | N], attempts = 2])`
+
+```sh
+inputReadYesNo "Connect to server" q $N
+if [[ $q == $Y ]]; then
+	inputRead "Enter login:" login
+	inputReadSecure "Enter password:" pass
+fi
+```

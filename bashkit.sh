@@ -37,6 +37,25 @@ bashkit() {
 
 bashkit;
 
+# 'sed -r' support
+`echo "foo" | sed -r 's/foo/bar/' >/dev/null 2>&1`;
+
+if [ -x "$(command -v gsed)" ]; then
+	logVerbose "[bashkit] 'sed' -> 'gsed'";
+	GNU_SED=$Y;
+elif [ ! $? -eq 0 ]; then
+	logVerbose "[bashkit] 'sed -r' not supported"
+	echo -n $(logVerbose "[bashkit] Try 'brew install gnu-sed'..");
+
+	`brew install gnu-sed >/dev/null 2>&1`;
+	logVerbose "" $(executeStatus $?);
+
+	if [ $? -eq 0 ]; then
+		GNU_SED=$Y;
+	fi
+fi
+
+# VERSION
 if [[ "$(getArg version)" == $Y ]]; then
 	logDone "[bashkit] VERSION: $newVer $(emojiStatus done)"
 	exit 0;

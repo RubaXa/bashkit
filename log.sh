@@ -12,7 +12,7 @@ if [[ $(getArg verbose) == $Y ]]; then
 fi
 
 log() {
-	color=$COLOR_CLR;
+	color=$COLOR_TXT;
 	level=$LOG_LEVEL;
 
 	case "$1" in
@@ -43,26 +43,37 @@ log() {
 	esac
 
 	if (($LOG_LEVEL & $level)); then
-		echo $(colorize $color "${@:2}")
+		echo $(colorize $color "${@:2}");
 	fi
 }
 
+logMsg() {
+	log "msg" "$(echo $@)";
+}
+
 logErr() {
-	log "err" "$(echo $@)"
+	log "err" "$(echo $@)";
 }
 
 logDone() {
-	log "done" "$(echo $@)"
+	log "done" "$(echo $@)";
 }
 
 logWarn() {
-	log "warn" "$(echo $@)"
+	log "warn" "$(echo $@)";
 }
 
 logInfo() {
-	log "info" "$(echo $@)"
+	log "info" "$(echo $@)";
 }
 
 logVerbose() {
-	log "verbose" "$(echo $@)"
+	log "verbose" "$(echo $@)";
+}
+
+hrLine() {
+	local len=$(stringLength $@);
+	echo "$@";
+	for ((i=0; i<$len; i++)); do echo -n "-"; done
+	echo "";
 }

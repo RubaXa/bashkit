@@ -9,9 +9,9 @@ execute() {
 
 executeStatus() {
 	if [ $1 -eq 0 ]; then
-		echo $(logInfo "OK" $(emojiStatus ok))
+		echo $(colorize $COLOR_OK "OK " $(emojiStatus ok))
 	else
-		echo $(logErr "FAILED" $(emojiStatus err))
+		echo $(colorize $COLOR_ERR "FAILED " $(emojiStatus err))
 	fi
 }
 
