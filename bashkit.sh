@@ -119,11 +119,12 @@ bashkit() {
 			if [[ $fns != "" ]]; then
 				doc="$doc---\n\n### [${file:2}]($file)\n$desc\n";
 
-				if [[ $consts != "" ]]; then
-					doc="$doc#### Constants\n$consts";
+				if [[ $consts == "" ]]; then
+					doc="$doc\n$fns";
+				else
+					doc="$doc#### Constants\n$consts\n#### Functions\n\n$fns";
 				fi
 
-				doc="$doc\n#### Functions\n\n$fns";
 				fns="";
 			fi
 		done

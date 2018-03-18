@@ -63,8 +63,6 @@ fi
 ### [emoji.sh](./emoji.sh)
 
 
-#### Functions
-
 ##### [emojiStatus](./emoji.sh#L7-L19) `[name=done]`
 - [name=done] — `ok`, `err` or `done`
 
@@ -72,8 +70,6 @@ fi
 
 ### [exec.sh](./exec.sh)
 
-
-#### Functions
 
 ##### [execute](./exec.sh#L3-L9) `cmd`
 
@@ -89,8 +85,6 @@ fi
 
 ### [fs.sh](./fs.sh)
 
-
-#### Functions
 
 ##### [fsGetFiles](./fs.sh#L3-L8) `path [depth=1]`
 
@@ -137,8 +131,6 @@ fi
 
 ### [input.sh](./input.sh)
 
-
-#### Functions
 
 ##### [inputRead](./input.sh#L3-L9) `text ref`
 
@@ -213,8 +205,6 @@ fi
 
 ### [string.sh](./string.sh)
 
-
-#### Functions
 
 ##### [stringTest](./string.sh#L3-L11) `regex value`
 
