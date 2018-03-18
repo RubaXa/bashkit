@@ -1,22 +1,32 @@
 #!/bin/bash
 
+# @param text
+# @param ref
 inputRead() {
 	echo -n "$COLOR_VAR$1 $COLOR_WARN";
 	read $3 $2;
 	echo -n $COLOR_CLR;
 }
 
+# @param text
+# @param ref
 inputReadSecure() {
 	inputRead $1 $2 -s;
 }
 
+# @param text
+# @param ref
 inputReadChar() {
 	local chr;
 	inputRead "$1" chr -n1;
 	assignVar $2 $chr;
-	inputReadCharFix $chr
+	_inputReadCharFix $chr
 }
 
+# @param text
+# @param ref
+# @param [def=$N]
+# @param [attempts=2]
 inputReadYesNo() {
 	local def=$(default $3 $N);
 	local chr;
@@ -32,7 +42,7 @@ inputReadYesNo() {
 	while (( $attempt < $maxAttempts )) ; do
 		attempt=$(( $attempt + 1 ));
 		inputRead "$1 $postfix:" chr -n1;
-		inputReadCharFix $chr
+		_inputReadCharFix $chr
 
 		if [[ $chr == "" ]]; then
 			chr=$def;
@@ -54,7 +64,7 @@ inputReadYesNo() {
 	assignVar $2 $chr;
 }
 
-inputReadCharFix() {
+_inputReadCharFix() {
 	if [[ "$1" != "" ]]; then
 		echo "";
 	fi

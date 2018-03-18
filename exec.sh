@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# @param cmd
 execute() {
 	echo -n $(logInfo "- Execute \`$@\` ..")
 	res=`$@ >/dev/null 2>&1`;
@@ -7,6 +8,7 @@ execute() {
 	logVerbose $res
 }
 
+# @param code
 executeStatus() {
 	if [ $1 -eq 0 ]; then
 		echo $(colorize $COLOR_OK "OK " $(emojiStatus ok))
@@ -15,6 +17,8 @@ executeStatus() {
 	fi
 }
 
+# @param cond — $Y or $N
+# @param cmd
 executeIf() {
 	cmd=${@:2};
 
@@ -25,6 +29,8 @@ executeIf() {
 	fi
 }
 
+# @param cond — $Y or $N
+# @param cmd
 executeIfNot() {
 	s=$1;
 	if [[ $s == $Y ]]; then s=$N; else s=$Y;fi

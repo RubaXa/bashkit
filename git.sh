@@ -12,6 +12,7 @@ gitCurrentBranch() {
 	stringGetMatch 'branch[[:blank:]]([a-zA-Z0-9_-]+)' $(git status >/dev/null 2>&1)
 }
 
+# @param name
 gitIsCurrentBranch() {
 	if [[ "$(gitCurrentBranch)" == "$1" ]]; then
 		echo $Y
@@ -20,6 +21,7 @@ gitIsCurrentBranch() {
 	fi
 }
 
+# @param name
 gitSwitchBranch() {
 	branch="$1";
 	needSwicth="$(gitIsCurrentBranch $branch)";

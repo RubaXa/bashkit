@@ -37,6 +37,7 @@ if [[ $game == $Y ]]; then
 fi
 ```
 
+<!--api-->
 ---
 
 ### `global.sh`

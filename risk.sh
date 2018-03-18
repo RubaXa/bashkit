@@ -2,6 +2,7 @@
 
 RISK_FLAGS="";
 
+# @param [branch] — create risk for git-branch
 riskCreate() {
 	branch=$(default "$1" "$GIT_BRANCH");
 	logInfo "- Create risk for git-branch: $branch (risk flags: $(default "${RISK_FLAGS}" '[[empty]]'))";
@@ -11,6 +12,8 @@ riskCreate() {
 	risk-deploy-create $RISK_FLAGS -b $branch;
 }
 
+# @param name — tarball name
+# @param branch — risk branch
 riskPush() {
 	name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
 	branch=$(required "$2" "[riskPush] Risk-branch must be defined (second argument)");
@@ -19,6 +22,8 @@ riskPush() {
 	risk-deploy-push $RISK_FLAGS --push-to-branch $branch --push-filename $name;
 }
 
+# @param name — tarball name
+# @param branch — risk branch
 riskSwitch() {
 	name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
 	branch=$(required "$2" "[riskPush] Risk branch must be defined (second argument)");
@@ -27,12 +32,15 @@ riskSwitch() {
 	risk-deploy-switch --branch $branch --switch-to-folder $name;
 }
 
+# @param name — tarball name
 riskAlpha() {
 	name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
 	riskPush "$name" "alphatest"
 	riskSwitch "$name" "alphatest"
 }
 
+# @param name — tarball name
+# @param [branch=trb] — risk branch
 riskRemove() {
 	name="$1"
 	branch=$(default "$2" "trb");
@@ -42,6 +50,7 @@ riskRemove() {
 	echo "" $(executeStatus $?);
 }
 
+# @param [branch] — risk branch
 riskAutoRemove() {
 	target="$1"
 	IFS=$'\n';

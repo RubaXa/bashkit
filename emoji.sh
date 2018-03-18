@@ -4,6 +4,7 @@ emojiListOK=(👍 👊 🤘 👌 💪 ✨ 🌟 🏅 🎖);
 emojiListError=(💩 😱 😡 💔 🚨 💥);
 emojiListDone=(🎀 💎 🍺 🎂 🍬 🏆 🎯 💖);
 
+# @param [name=done] — `ok`, `err` or `done`
 emojiStatus() {
 	if [[ "$@" == "ok" ]]; then
 		list=(${emojiListOK[@]});

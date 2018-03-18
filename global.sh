@@ -9,6 +9,8 @@ HOUR=$(($SECOND * 60));
 
 ARGS=($@);
 
+# @param val
+# @peram defVal
 default() {
 	if [[ $1 == "" ]]; then
 		echo ${@:2};
@@ -17,6 +19,8 @@ default() {
 	fi
 }
 
+# @param val
+# @param errMsg
 required() {
 	if [[ $1 == "" ]]; then
 		logErr "$2" $(emojiStatus err);
@@ -26,10 +30,13 @@ required() {
 	fi
 }
 
+# @param ref
+# @param val
 assignVar() {
 	eval $1=$2;
 }
 
+# @param name
 getArg() {
 	for argName in ${ARGS[@]}; do
 		if [[ "--$1" == "$argName" ]]; then

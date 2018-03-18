@@ -11,6 +11,8 @@ if [[ $(getArg verbose) == $Y ]]; then
 	LOG_LEVEL=$(($LOG_LEVEL | $LOG_LEVEL_VERBOSE));
 fi
 
+# @param level — msg, ok, done, info, warn, err, verbose
+# @param ...msg
 log() {
 	color=$COLOR_TXT;
 	level=$LOG_LEVEL;
@@ -47,30 +49,37 @@ log() {
 	fi
 }
 
+# @param ...msg
 logMsg() {
 	log "msg" "$(echo $@)";
 }
 
+# @param ...msg
 logErr() {
 	log "err" "$(echo $@)";
 }
 
+# @param ...msg
 logDone() {
 	log "done" "$(echo $@)";
 }
 
+# @param ...msg
 logWarn() {
 	log "warn" "$(echo $@)";
 }
 
+# @param ...msg
 logInfo() {
 	log "info" "$(echo $@)";
 }
 
+# @param ...msg
 logVerbose() {
 	log "verbose" "$(echo $@)";
 }
 
+# @param ...msg
 hrLine() {
 	local len=$(stringLength $@);
 	echo "$@";
