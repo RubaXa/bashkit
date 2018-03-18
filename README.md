@@ -54,11 +54,11 @@ fi
 
 #### Functions
 
-##### [colorize](./colors.sh#L15-19)
+##### [colorize](./colors.sh#L15-L19)
 - color
 - ...text
 
-##### [colorRemove](./colors.sh#L21-28)
+##### [colorRemove](./colors.sh#L21-L28)
 - ...text
 
 ---
@@ -68,17 +68,17 @@ fi
 
 #### Functions
 
-##### [execute](./exec.sh#L3-9)
+##### [execute](./exec.sh#L3-L9)
 - cmd
 
-##### [executeStatus](./exec.sh#L11-18)
+##### [executeStatus](./exec.sh#L11-L18)
 - code
 
-##### [executeIf](./exec.sh#L20-30)
+##### [executeIf](./exec.sh#L20-L30)
 - cond
 - cmd
 
-##### [executeIfNot](./exec.sh#L32-38)
+##### [executeIfNot](./exec.sh#L32-L38)
 - cond
 - cmd
 
@@ -89,13 +89,13 @@ fi
 
 #### Functions
 
-##### [fsGetFiles](./fs.sh#L3-8)
+##### [fsGetFiles](./fs.sh#L3-L8)
 - path
 
-##### [fsReadFile](./fs.sh#L10-16)
+##### [fsReadFile](./fs.sh#L10-L16)
 - file
 
-##### [fsWriteFile](./fs.sh#L18-22)
+##### [fsWriteFile](./fs.sh#L18-L22)
 - file
 - content
 
@@ -108,10 +108,10 @@ fi
 
 #### Functions
 
-##### [gitIsCurrentBranch](./git.sh#L15-22)
+##### [gitIsCurrentBranch](./git.sh#L15-L22)
 - name
 
-##### [gitSwitchBranch](./git.sh#L24-29)
+##### [gitSwitchBranch](./git.sh#L24-L29)
 - name
 
 ---
@@ -128,18 +128,18 @@ fi
 
 #### Functions
 
-##### [default](./global.sh#L12-20)
+##### [default](./global.sh#L12-L20)
 - val
 
-##### [required](./global.sh#L22-31)
+##### [required](./global.sh#L22-L31)
 - val
 - errMsg
 
-##### [assignVar](./global.sh#L33-37)
+##### [assignVar](./global.sh#L33-L37)
 - ref
 - val
 
-##### [getArg](./global.sh#L39-46)
+##### [getArg](./global.sh#L39-L46)
 - name
 
 ---
@@ -149,19 +149,19 @@ fi
 
 #### Functions
 
-##### [inputRead](./input.sh#L3-9)
+##### [inputRead](./input.sh#L3-L9)
 - text
 - ref
 
-##### [inputReadSecure](./input.sh#L11-15)
+##### [inputReadSecure](./input.sh#L11-L15)
 - text
 - ref
 
-##### [inputReadChar](./input.sh#L17-24)
+##### [inputReadChar](./input.sh#L17-L24)
 - text
 - ref
 
-##### [inputReadYesNo](./input.sh#L26-65)
+##### [inputReadYesNo](./input.sh#L26-L65)
 - text
 - ref
 
@@ -179,29 +179,29 @@ fi
 
 #### Functions
 
-##### [log](./log.sh#L14-50)
+##### [log](./log.sh#L14-L50)
 - level
 - ...msg
 
-##### [logMsg](./log.sh#L52-55)
+##### [logMsg](./log.sh#L52-L55)
 - ...msg
 
-##### [logErr](./log.sh#L57-60)
+##### [logErr](./log.sh#L57-L60)
 - ...msg
 
-##### [logDone](./log.sh#L62-65)
+##### [logDone](./log.sh#L62-L65)
 - ...msg
 
-##### [logWarn](./log.sh#L67-70)
+##### [logWarn](./log.sh#L67-L70)
 - ...msg
 
-##### [logInfo](./log.sh#L72-75)
+##### [logInfo](./log.sh#L72-L75)
 - ...msg
 
-##### [logVerbose](./log.sh#L77-80)
+##### [logVerbose](./log.sh#L77-L80)
 - ...msg
 
-##### [hrLine](./log.sh#L82-88)
+##### [hrLine](./log.sh#L82-L88)
 - ...msg
 
 ---
@@ -213,18 +213,18 @@ fi
 
 #### Functions
 
-##### [riskPush](./risk.sh#L15-23)
+##### [riskPush](./risk.sh#L15-L23)
 - name
 - branch
 
-##### [riskSwitch](./risk.sh#L25-33)
+##### [riskSwitch](./risk.sh#L25-L33)
 - name
 - branch
 
-##### [riskAlpha](./risk.sh#L35-40)
+##### [riskAlpha](./risk.sh#L35-L40)
 - name
 
-##### [riskRemove](./risk.sh#L42-51)
+##### [riskRemove](./risk.sh#L42-L51)
 - name
 
 ---
@@ -234,21 +234,21 @@ fi
 
 #### Functions
 
-##### [stringGetMatch](./string.sh#L3-9)
+##### [stringGetMatch](./string.sh#L3-L9)
 - regex
 - value
 
-##### [stringTrim](./string.sh#L11-26)
+##### [stringTrim](./string.sh#L11-L26)
 - value
 
-##### [stringLength](./string.sh#L28-36)
+##### [stringLength](./string.sh#L28-L36)
 - value
 
-##### [stringCutAfter](./string.sh#L38-43)
+##### [stringCutAfter](./string.sh#L38-L43)
 - sep
 - text
 
-##### [stringCutBefore](./string.sh#L45-50)
+##### [stringCutBefore](./string.sh#L45-L50)
 - sep
 - text
 

@@ -102,7 +102,7 @@ bashkit() {
 				fi
 
 				if [[ $startLine != "" && $line == "}" ]]; then
-					fns="$fns##### [$fnName]($file#L$startLine-$lineNo)\n$args\n";
+					fns="$fns##### [$fnName]($file#L$startLine-L$lineNo)\n$args\n";
 					args="";
 					desc="";
 					cons="";
