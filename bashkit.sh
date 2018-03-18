@@ -69,6 +69,7 @@ bashkit() {
 			local desc="";
 			local consts="";
 			local args="";
+			local inlineArgs="";
 			local fns="";
 			local tmp="";
 			local _IFS=$IFS;
@@ -89,9 +90,12 @@ bashkit() {
 				fi
 
 				# param
-				tmp=$(stringGetMatch "@param[[:blank:]]+([[:alpha:].]+)" "$line")
+				tmp=$(stringGetMatch "@param[[:blank:]]+(.+)" "$line")
 				if [[ $tmp != "" ]]; then
-					args="$args- $tmp\n";
+					if [[ $(stringTest "[[:space:]]" $tmp) == $Y ]]; then
+						args="$args- $tmp\n";
+					fi
+					inlineArgs="$inlineArgs $(stringGetMatch "^([^[:space:]]+)" $tmp)";
 					if [[ $startLine == "" ]]; then startLine=$lineNo; fi;
 				fi
 
@@ -102,11 +106,11 @@ bashkit() {
 				fi
 
 				if [[ $startLine != "" && $line == "}" ]]; then
-					fns="$fns##### [$fnName]($file#L$startLine-L$lineNo)\n$args\n";
+					fns="$fns##### [$fnName]($file#L$startLine-L$lineNo) \`${inlineArgs:1}\`\n$args\n";
 					args="";
 					desc="";
-					cons="";
 					startLine="";
+					inlineArgs="";
 				fi
 			done < $file;
 

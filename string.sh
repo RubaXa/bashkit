@@ -2,6 +2,16 @@
 
 # @param regex
 # @param value
+stringTest() {
+	if [[ "${@:2}" =~ $1 ]]; then
+		echo $Y;
+    else
+        echo $N;
+	fi
+}
+
+# @param regex
+# @param value
 stringGetMatch() {
 	if [[ "${@:2}" =~ $1 ]]; then
 		echo ${BASH_REMATCH[1]};

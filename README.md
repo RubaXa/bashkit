@@ -54,12 +54,19 @@ fi
 
 #### Functions
 
-##### [colorize](./colors.sh#L15-L19)
-- color
-- ...text
+##### [colorize](./colors.sh#L15-L19) `color ...text`
 
-##### [colorRemove](./colors.sh#L21-L28)
-- ...text
+##### [colorRemove](./colors.sh#L21-L28) `...text`
+
+---
+
+### [emoji.sh](./emoji.sh)
+
+
+#### Functions
+
+##### [emojiStatus](./emoji.sh#L7-L19) `[name=done]`
+- [name=done] — `ok`, `err` or `done`
 
 ---
 
@@ -68,19 +75,15 @@ fi
 
 #### Functions
 
-##### [execute](./exec.sh#L3-L9)
-- cmd
+##### [execute](./exec.sh#L3-L9) `cmd`
 
-##### [executeStatus](./exec.sh#L11-L18)
-- code
+##### [executeStatus](./exec.sh#L11-L18) `code`
 
-##### [executeIf](./exec.sh#L20-L30)
-- cond
-- cmd
+##### [executeIf](./exec.sh#L20-L30) `cond cmd`
+- cond — $Y or $N
 
-##### [executeIfNot](./exec.sh#L32-L38)
-- cond
-- cmd
+##### [executeIfNot](./exec.sh#L32-L38) `cond cmd`
+- cond — $Y or $N
 
 ---
 
@@ -89,15 +92,11 @@ fi
 
 #### Functions
 
-##### [fsGetFiles](./fs.sh#L3-L8)
-- path
+##### [fsGetFiles](./fs.sh#L3-L8) `path [depth=1]`
 
-##### [fsReadFile](./fs.sh#L10-L16)
-- file
+##### [fsReadFile](./fs.sh#L10-L16) `file`
 
-##### [fsWriteFile](./fs.sh#L18-L22)
-- file
-- content
+##### [fsWriteFile](./fs.sh#L18-L22) `file content`
 
 ---
 
@@ -108,11 +107,9 @@ fi
 
 #### Functions
 
-##### [gitIsCurrentBranch](./git.sh#L15-L22)
-- name
+##### [gitIsCurrentBranch](./git.sh#L15-L22) `name`
 
-##### [gitSwitchBranch](./git.sh#L24-L29)
-- name
+##### [gitSwitchBranch](./git.sh#L24-L29) `name`
 
 ---
 
@@ -128,19 +125,13 @@ fi
 
 #### Functions
 
-##### [default](./global.sh#L12-L20)
-- val
+##### [default](./global.sh#L12-L20) `val`
 
-##### [required](./global.sh#L22-L31)
-- val
-- errMsg
+##### [required](./global.sh#L22-L31) `val errMsg`
 
-##### [assignVar](./global.sh#L33-L37)
-- ref
-- val
+##### [assignVar](./global.sh#L33-L37) `ref val`
 
-##### [getArg](./global.sh#L39-L46)
-- name
+##### [getArg](./global.sh#L39-L46) `name`
 
 ---
 
@@ -149,21 +140,13 @@ fi
 
 #### Functions
 
-##### [inputRead](./input.sh#L3-L9)
-- text
-- ref
+##### [inputRead](./input.sh#L3-L9) `text ref`
 
-##### [inputReadSecure](./input.sh#L11-L15)
-- text
-- ref
+##### [inputReadSecure](./input.sh#L11-L15) `text ref`
 
-##### [inputReadChar](./input.sh#L17-L24)
-- text
-- ref
+##### [inputReadChar](./input.sh#L17-L24) `text ref`
 
-##### [inputReadYesNo](./input.sh#L26-L65)
-- text
-- ref
+##### [inputReadYesNo](./input.sh#L26-L65) `text ref [def=$N] [attempts=2]`
 
 ---
 
@@ -179,30 +162,22 @@ fi
 
 #### Functions
 
-##### [log](./log.sh#L14-L50)
-- level
-- ...msg
+##### [log](./log.sh#L14-L50) `level ...msg`
+- level — msg, ok, done, info, warn, err, verbose
 
-##### [logMsg](./log.sh#L52-L55)
-- ...msg
+##### [logMsg](./log.sh#L52-L55) `...msg`
 
-##### [logErr](./log.sh#L57-L60)
-- ...msg
+##### [logErr](./log.sh#L57-L60) `...msg`
 
-##### [logDone](./log.sh#L62-L65)
-- ...msg
+##### [logDone](./log.sh#L62-L65) `...msg`
 
-##### [logWarn](./log.sh#L67-L70)
-- ...msg
+##### [logWarn](./log.sh#L67-L70) `...msg`
 
-##### [logInfo](./log.sh#L72-L75)
-- ...msg
+##### [logInfo](./log.sh#L72-L75) `...msg`
 
-##### [logVerbose](./log.sh#L77-L80)
-- ...msg
+##### [logVerbose](./log.sh#L77-L80) `...msg`
 
-##### [hrLine](./log.sh#L82-L88)
-- ...msg
+##### [hrLine](./log.sh#L82-L88) `...msg`
 
 ---
 
@@ -213,19 +188,26 @@ fi
 
 #### Functions
 
-##### [riskPush](./risk.sh#L15-L23)
-- name
-- branch
+##### [riskCreate](./risk.sh#L5-L13) `[branch]`
+- [branch] — create risk for git-branch
 
-##### [riskSwitch](./risk.sh#L25-L33)
-- name
-- branch
+##### [riskPush](./risk.sh#L15-L23) `name branch`
+- name — tarball name
+- branch — risk branch
 
-##### [riskAlpha](./risk.sh#L35-L40)
-- name
+##### [riskSwitch](./risk.sh#L25-L33) `name branch`
+- name — tarball name
+- branch — risk branch
 
-##### [riskRemove](./risk.sh#L42-L51)
-- name
+##### [riskAlpha](./risk.sh#L35-L40) `name`
+- name — tarball name
+
+##### [riskRemove](./risk.sh#L42-L51) `name [branch=trb]`
+- name — tarball name
+- [branch=trb] — risk branch
+
+##### [riskAutoRemove](./risk.sh#L53-L80) `[branch]`
+- [branch] — risk branch
 
 ---
 
@@ -234,22 +216,16 @@ fi
 
 #### Functions
 
-##### [stringGetMatch](./string.sh#L3-L9)
-- regex
-- value
+##### [stringTest](./string.sh#L3-L11) `regex value`
 
-##### [stringTrim](./string.sh#L11-L26)
-- value
+##### [stringGetMatch](./string.sh#L13-L19) `regex value`
 
-##### [stringLength](./string.sh#L28-L36)
-- value
+##### [stringTrim](./string.sh#L21-L36) `value`
 
-##### [stringCutAfter](./string.sh#L38-L43)
-- sep
-- text
+##### [stringLength](./string.sh#L38-L46) `value`
 
-##### [stringCutBefore](./string.sh#L45-L50)
-- sep
-- text
+##### [stringCutAfter](./string.sh#L48-L53) `sep text`
+
+##### [stringCutBefore](./string.sh#L55-L60) `sep text`
 
 
