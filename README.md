@@ -140,6 +140,9 @@ fi
 
 ##### [inputReadYesNo](./input.sh#L26-L65) `text ref [def=$N] [attempts=2]`
 
+##### [inputSelect](./input.sh#L93-L139) `text ref ...items`
+- ref — will contains a selected index
+
 ---
 
 ### [log.sh](./log.sh)

@@ -69,3 +69,71 @@ _inputReadCharFix() {
 		echo "";
 	fi
 }
+
+inputReadKey() {
+	local key;
+	read -r -sn1 key
+
+	case $key in
+		A) echo "UP" ;;
+		B) echo "DOWN" ;;
+		C) echo "RIGHT" ;;
+		D) echo "LEFT" ;;
+		*)
+			if [[ $key == "" ]]; then
+				echo "ENTER";
+			else
+				echo "$key";
+			fi
+		;;
+	esac
+
+}
+
+# @param text
+# @param ref — will contains a selected index
+# @param ...items
+inputSelect() {
+	local __sel=0;
+	local __items=${@:3};
+
+	echo -ne $(colorize $COLOR_VAR "$1 (choose one):");
+
+	while : ; do
+		local __idx=0;
+		local __list="";
+		local __ret=$N;
+
+		for __item in $__items; do
+			if (( $__sel == $__idx )); then
+				__list="$__list\n$COLOR_DONE > ";
+			else
+				__list="$__list\n   ";
+			fi
+
+			__list="${__list}${__item}$COLOR_CLR";
+			__idx=$(($__idx + 1));
+		done
+
+		echo -e "$__list";
+
+		case $(inputReadKey) in
+			UP) __sel=$(($__sel - 1)) ;;
+			DOWN) __sel=$(($__sel + 1)) ;;
+			ENTER) __ret=$Y ;;
+		esac
+
+		if (( $__sel < 0 )); then
+			__sel=$(($__idx - 1));
+		elif (( $__sel == $__idx )); then
+			__sel=0;
+		fi
+
+		if [[ $__ret == $Y ]]; then
+			assignVar $2 $__sel;
+			break;
+		else
+			tput cuu $(($__idx + 1));
+		fi
+	done
+}
