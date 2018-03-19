@@ -15,7 +15,7 @@ COLOR_VAR=$(tput setaf 6);
 # @param color
 # @param ...text
 colorize() {
-	echo "$1$2$COLOR_RESET"
+	echo "$1${@:2}$COLOR_RESET";
 }
 
 # @param ...text

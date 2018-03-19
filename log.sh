@@ -51,32 +51,32 @@ log() {
 
 # @param ...msg
 logMsg() {
-	log "msg" "$(echo $@)";
+	log "msg" "$@";
 }
 
 # @param ...msg
 logErr() {
-	log "err" "$(echo $@)";
+	log "err" "$@";
 }
 
 # @param ...msg
 logDone() {
-	log "done" "$(echo $@)";
+	log "done" "$@";
 }
 
 # @param ...msg
 logWarn() {
-	log "warn" "$(echo $@)";
+	log "warn" "$@";
 }
 
 # @param ...msg
 logInfo() {
-	log "info" "$(echo $@)";
+	log "info" "$@";
 }
 
 # @param ...msg
 logVerbose() {
-	log "verbose" "$(echo $@)";
+	log "verbose" "$@";
 }
 
 # @param ...msg
