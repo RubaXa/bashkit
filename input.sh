@@ -139,6 +139,3 @@ inputSelect() {
 		fi
 	done
 }
-
-inputReadYesNo "Foo" ref;
-echo $ref;

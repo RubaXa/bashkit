@@ -86,3 +86,13 @@ hrLine() {
 	for ((i=0; i<$len; i++)); do echo -n "-"; done
 	echo "";
 }
+
+# @param text
+logHead() {
+	hrLine $(logInfo "$@");
+}
+
+# @param [text=done]
+logFinish() {
+	logDone "$(default "$@" "DONE") $(emojiStatus done)"
+}

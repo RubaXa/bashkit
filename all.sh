@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASHKIT_DIR="$HOME/.bashkit";
-BASHKIT_VERSION="0.7.1"
+BASHKIT_VERSION="0.8.0"
 
 source "$BASHKIT_DIR/global.sh";
 source "$BASHKIT_DIR/string.sh";
