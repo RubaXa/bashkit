@@ -3,7 +3,7 @@
 # @param text
 # @param ref
 inputRead() {
-	echo -n "$COLOR_VAR$1 $COLOR_WARN";
+	echo -ne "$COLOR_VAR$1 $COLOR_WARN";
 	read $3 $2;
 	echo -n $COLOR_CLR;
 }
@@ -41,13 +41,15 @@ inputReadYesNo() {
 
 	while (( $attempt < $maxAttempts )) ; do
 		attempt=$(( $attempt + 1 ));
-		inputRead "$1 $postfix:" chr -n1;
-		_inputReadCharFix $chr
+		inputRead "$1 $postfix:" chr -sn1;
 
-		if [[ $chr == "" ]]; then
+		if [[ "$chr" == "" ]]; then
 			chr=$def;
-			break;
-		elif [[ $chr == "y" || $chr == "Y" ]]; then
+		fi
+
+		colorize $COLOR_WARN "$chr";
+
+		if [[ $chr == "y" || $chr == "Y" ]]; then
 			chr=$Y;
 			break;
 		elif [[ $chr == "n" || $chr == "N" ]]; then
@@ -137,3 +139,6 @@ inputSelect() {
 		fi
 	done
 }
+
+inputReadYesNo "Foo" ref;
+echo $ref;
