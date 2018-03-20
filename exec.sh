@@ -2,18 +2,18 @@
 
 # @param cmd
 execute() {
-	echo -n $(logInfo "- Execute \`$@\` ..")
+	echo -n $(logInfo "- Execute \`$@\` ..");
 	res=`$@ >/dev/null 2>&1`;
-	echo "" $(executeStatus $?)
+	logInfo $(executeStatus $?);
 	logVerbose $res
 }
 
 # @param code
 executeStatus() {
 	if [ $1 -eq 0 ]; then
-		echo $(colorize $COLOR_OK "OK " $(emojiStatus ok))
+		echo $(colorize $COLOR_OK "OK $(emojiStatus ok)");
 	else
-		echo $(colorize $COLOR_ERR "FAILED " $(emojiStatus err))
+		echo $(colorize $COLOR_ERR "FAILED $(emojiStatus err)");
 	fi
 }
 

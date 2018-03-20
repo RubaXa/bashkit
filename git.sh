@@ -5,11 +5,11 @@ gitPull() {
 }
 
 gitFetchAll() {
-	execute "git fetch --all"
+	execute "git fetch --all";
 }
 
 gitCurrentBranch() {
-	stringGetMatch 'branch[[:blank:]]([a-zA-Z0-9_-]+)' $(git status >/dev/null 2>&1)
+	stringGetMatch 'branch[[:blank:]]([[:alpha:]]+)' "$(git status >/dev/null 2>&1)";
 }
 
 # @param name

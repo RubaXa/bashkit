@@ -84,7 +84,7 @@ riskExec() {
 		risk-create)      riskCreate $2; ;;
 		risk-push)        riskPush $2 $3; ;;
 		risk-switch)      riskSwitch $2 $3; ;;
-		risk-alpha)       ristAlpha $2; ;;
+		risk-alpha)       riskAlpha $2; ;;
 		risk-show)        risk-deploy-show; ;;
 		risk-remove)      riskRemove $2 $3; ;;
 		risk-auto-remove) riskAutoRemove $2; ;;
