@@ -70,15 +70,20 @@ fi
 
 ### [exec.sh](./exec.sh)
 
+#### Constants
+- [$EXEC_OK](./exec.sh#L3)
 
-##### [execute](./exec.sh#L3-L9) `cmd`
+#### Functions
 
-##### [executeStatus](./exec.sh#L11-L18) `code`
+##### [execute](./exec.sh#L5-L23) `cmd [ref-status]`
+- [ref-status] — execution result status, 0 — success, else failed
 
-##### [executeIf](./exec.sh#L20-L30) `cond cmd`
+##### [executeStatus](./exec.sh#L25-L32) `code`
+
+##### [executeIf](./exec.sh#L34-L44) `cond cmd`
 - cond — $Y or $N
 
-##### [executeIfNot](./exec.sh#L32-L38) `cond cmd`
+##### [executeIfNot](./exec.sh#L46-L52) `cond cmd`
 - cond — $Y or $N
 
 ---
@@ -138,9 +143,9 @@ fi
 
 ##### [inputReadChar](./input.sh#L17-L24) `text ref`
 
-##### [inputReadYesNo](./input.sh#L26-L65) `text ref [def=$N] [attempts=2]`
+##### [inputReadYesNo](./input.sh#L26-L67) `text ref [def=$N] [attempts=2]`
 
-##### [inputSelect](./input.sh#L93-L139) `text ref ...items`
+##### [inputSelect](./input.sh#L95-L141) `text ref ...items`
 - ref — will contains a selected index
 
 ---
@@ -173,6 +178,10 @@ fi
 ##### [logVerbose](./log.sh#L77-L80) `...msg`
 
 ##### [hrLine](./log.sh#L82-L88) `...msg`
+
+##### [logHead](./log.sh#L90-L93) `text`
+
+##### [logFinish](./log.sh#L95-L98) `[text=done]`
 
 ---
 
