@@ -107,4 +107,6 @@ logFinish() {
 	else
 		logErr "$__failed $(emojiStatus err)";
 	fi
+
+	echo "";
 }

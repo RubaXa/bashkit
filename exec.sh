@@ -19,7 +19,7 @@ execute() {
 	fi
 
 	logInfo $(executeStatus $__ok);
-	logVerbose $res
+	logVerbose $res;
 }
 
 # @param code
@@ -31,22 +31,21 @@ executeStatus() {
 	fi
 }
 
-# @param cond — $Y or $N
+# @param cond — $Y/$EXEC_OK or $N
 # @param cmd
+# @param [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 executeIf() {
-	cmd=${@:2};
-
-	if [[ $1 == $Y ]]; then
-		execute $cmd
+	if [[ $1 == $Y || $1 == $EXEC_OK ]]; then
+		execute "$2" $3;
 	else
-		logVerbose "- Execute: \`$cmd\` .. SKIPPED"
+		logVerbose "- Execute: \`$2\` .. SKIPPED";
 	fi
 }
 
-# @param cond — $Y or $N
+# @param cond — $Y/$EXEC_OK or $N
 # @param cmd
 executeIfNot() {
-	s=$1;
-	if [[ $s == $Y ]]; then s=$N; else s=$Y;fi
-	executeIf $s "${@:2}"
+	local __s=$1;
+	if [[ $__s == $Y || $__s == $EXEC_OK ]]; then __ss=$N; else __s=$Y; fi
+	executeIf $__s "$2" $3;
 }
