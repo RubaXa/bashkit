@@ -13,7 +13,7 @@ execute() {
 		__res=`$1 >/dev/null 2>&1`;
 		__ok="$?";
 	else
-		__res=`$1`;
+		__res=`$1 >/dev/null 2>&1`;
 		__ok="$?";
 		assignVar $2 $__ok;
 	fi

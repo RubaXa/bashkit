@@ -92,7 +92,19 @@ logHead() {
 	hrLine $(logInfo "$@");
 }
 
-# @param [text=done]
+# @param [status]
+# @param [done=DONE]
+# @param [failed=FAILED]
 logFinish() {
-	logDone "$(default "$@" "DONE") $(emojiStatus done)"
+	local __ok=$EXEC_OK;
+	local __done=$(default "$2" "DONE");
+	local __failed=$(default "$3" "FAILED");
+
+	if [[ ${#@} > 0 ]]; then __ok=$1; fi
+
+	if [[ $__ok == $EXEC_OK ]]; then
+		logDone "$__done $(emojiStatus done)";
+	else
+		logErr "$__failed $(emojiStatus err)";
+	fi
 }
