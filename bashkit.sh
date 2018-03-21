@@ -45,11 +45,9 @@ bashkit() {
 		echo -n $(logVerbose "[bashkit] Try 'brew install gnu-sed'..");
 
 		`brew install gnu-sed >/dev/null 2>&1`;
-		logVerbose "" $(executeStatus $?);
+		if [ $? -eq 0 ]; then GNU_SED=$Y; fi
 
-		if [ $? -eq 0 ]; then
-			GNU_SED=$Y;
-		fi
+		logVerbose "" $(executeStatus $?);
 	fi
 
 	# VERSION
