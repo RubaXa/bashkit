@@ -1,9 +1,10 @@
 #!/bin/bash
 
 BASHKIT_DIR="$HOME/.bashkit";
-BASHKIT_VERSION="0.11.0"
+BASHKIT_VERSION="0.12.0"
 
 source "$BASHKIT_DIR/global.sh";
+source "$BASHKIT_DIR/array.sh";
 source "$BASHKIT_DIR/string.sh";
 source "$BASHKIT_DIR/time.sh";
 source "$BASHKIT_DIR/emoji.sh";

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 EXEC_OK="0";
+EXEC_ERR="1";
 
 # @param cmd
 # @param [ref-status] — execution result status, `$EXEC_OK` — success, else failed
