@@ -76,7 +76,7 @@ fi
 #### Functions
 
 ##### [execute](./exec.sh#L5-L23) `cmd [ref-status]`
-- [ref-status] — execution result status, 0 — success, else failed
+- [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 
 ##### [executeStatus](./exec.sh#L25-L32) `code`
 

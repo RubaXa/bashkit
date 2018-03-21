@@ -3,7 +3,7 @@
 EXEC_OK="0";
 
 # @param cmd
-# @param [ref-status] — execution result status, 0 — success, else failed
+# @param [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 execute() {
 	local __ok=1;
 	local __res;
