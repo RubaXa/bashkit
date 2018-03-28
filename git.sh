@@ -9,7 +9,7 @@ gitFetchAll() {
 }
 
 gitCurrentBranch() {
-	stringGetMatch 'branch[[:blank:]]([[:alpha:]]+)' "$(git status >/dev/null 2>&1)";
+	git rev-parse --abbrev-ref HEAD;
 }
 
 # @param name
