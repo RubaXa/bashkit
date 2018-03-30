@@ -56,7 +56,7 @@ bashkit() {
 		exit 0;
 	fi
 
-	# PUBLISH
+	# DOCS
 	if [[ "$(getArg "bashkit-docs")" == $Y ]]; then
 		local doc;
 
@@ -130,6 +130,8 @@ bashkit() {
 		local md=$(fsReadFile README.md);
 		md="$(stringCutAfter "<!--api-->" "$md")\n<!--api-->\n$doc";
 		fsWriteFile "README.md" "$md";
+
+		logFinish $EXEC_OK "Docs generated";
 	fi
 }
 

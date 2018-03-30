@@ -39,6 +39,14 @@ fi
 <!--api-->
 ---
 
+### [array.sh](./array.sh)
+
+
+##### [arrayIncludes](./array.sh#L3-L14) `value ...list`
+- ...list — for example `arrayIncludes "y" "x" "y"`, or `arrayIncludes $val ${list[@]}`
+
+---
+
 ### [colors.sh](./colors.sh)
 
 #### Constants
@@ -72,19 +80,21 @@ fi
 
 #### Constants
 - [$EXEC_OK](./exec.sh#L3)
+- [$EXEC_ERR](./exec.sh#L4)
 
 #### Functions
 
-##### [execute](./exec.sh#L5-L23) `cmd [ref-status]`
+##### [execute](./exec.sh#L6-L24) `cmd [ref-status]`
 - [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 
-##### [executeStatus](./exec.sh#L25-L32) `code`
+##### [executeStatus](./exec.sh#L26-L33) `code`
 
-##### [executeIf](./exec.sh#L34-L44) `cond cmd`
-- cond — $Y or $N
+##### [executeIf](./exec.sh#L35-L44) `cond cmd [ref-status]`
+- cond — $Y/$EXEC_OK or $N
+- [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 
 ##### [executeIfNot](./exec.sh#L46-L52) `cond cmd`
-- cond — $Y or $N
+- cond — $Y/$EXEC_OK or $N
 
 ---
 
@@ -181,7 +191,7 @@ fi
 
 ##### [logHead](./log.sh#L90-L93) `text`
 
-##### [logFinish](./log.sh#L95-L98) `[text=done]`
+##### [logFinish](./log.sh#L95-L112) `[status] [done=DONE] [failed=FAILED]`
 
 ---
 
