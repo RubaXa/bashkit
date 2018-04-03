@@ -82,8 +82,13 @@ riskAutoRemove() {
 riskExec() {
 	case "$1" in
 		risk-create)      riskCreate $2; ;;
+
 		risk-push)        riskPush $2 $3; ;;
+		risk-push-prod)   riskPush $2 "production"; ;;
+
 		risk-switch)      riskSwitch $2 $3; ;;
+		risk-switch-prod) riskSwitch $2 "production"; ;;
+
 		risk-alpha)       riskAlpha $2; ;;
 		risk-show)        risk-deploy-show; ;;
 		risk-remove)      riskRemove $2 $3; ;;
