@@ -44,3 +44,15 @@ getArg() {
 		fi
 	done
 }
+
+# @param pattern
+# @param forSED
+RE() {
+	local re="$1"
+
+	if [[ "$2" == "$Y" ]]; then
+		re=`echo $re | sed 's/\\\d\\+/[0-9][0-9]*/g'`;
+	fi
+
+	echo "$re" | sed 's/\d/[0-9]/g';
+}

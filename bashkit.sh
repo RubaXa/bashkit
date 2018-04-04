@@ -6,14 +6,16 @@ bashkit() {
 	local tmpfile="$BASHKIT_DIR/.last-update";
 	local time=$(now);
 	local newVer="";
+	local skipVerCheck=$N;
 
 	logVerbose "[bashkit] Current version: $BASHKIT_VERSION"
 
 	if [ -f $tmpfile ]; then
 		prevTime=`cat $tmpfile`;
 		if (($time - $prevTime < $BASHKIT_REFRESH_TIME)); then
-			logVerbose "[bashkit] Skip checking version"
+			logVerbose "[bashkit] Skip checking remote version"
 			newVer=$BASHKIT_VERSION;
+			skipVerCheck=$Y
 		fi
 	fi
 
@@ -23,14 +25,16 @@ bashkit() {
 		echo "$time" > $tmpfile;
 	fi
 
-	logVerbose "[bashkit] Remote version: $newVer"
+	if [[ $skipVerCheck == $N ]]; then
+		logVerbose "[bashkit] Remote version: $newVer";
+	fi
 
 	if [[ $BASHKIT_VERSION != $newVer ]]; then
-		logWarn "[bashkit] Switch to new version: $newVer"
+		logWarn "[bashkit] Switch to new version: $newVer";
 		cd $BASHKIT_DIR;
 		git pull
 		cd -;
-		logWarn "[bashkit] Try again"
+		logWarn "[bashkit] Try again";
 		exit 1
 	fi
 
@@ -61,7 +65,7 @@ bashkit() {
 		local doc;
 
 		for file in $(fsGetFiles "."); do
-			logVerbose "[bashkit] Parse $file";
+			logVerbose "[bashkit] Processing $file";
 			local lineNo=0;
 			local startLine="";
 			local desc="";
@@ -98,7 +102,7 @@ bashkit() {
 				fi
 
 				# fn
-				tmp=$(stringGetMatch "^([a-z][[:alpha:]]+)\(\)" "$line")
+				tmp=$(stringGetMatch "^([a-zA-Z][[:alpha:]]+)\(\)" "$line")
 				if [[ $tmp != "" ]]; then
 					fnName=$tmp;
 				fi

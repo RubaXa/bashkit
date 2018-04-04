@@ -101,11 +101,15 @@ fi
 ### [fs.sh](./fs.sh)
 
 
-##### [fsGetFiles](./fs.sh#L3-L8) `path [depth=1]`
+##### [fsGetFiles](./fs.sh#L3-L9) `path [depth=1]`
 
-##### [fsReadFile](./fs.sh#L10-L16) `file`
+##### [fsReadFile](./fs.sh#L11-L17) `file`
 
-##### [fsWriteFile](./fs.sh#L18-L22) `file content`
+##### [fsWriteFile](./fs.sh#L19-L23) `file content`
+
+##### [fsReplaceInFile](./fs.sh#L25-L31) `file pattern value`
+
+##### [fsReplaceInFiles](./fs.sh#L33-L42) `path pattern value`
 
 ---
 
@@ -141,6 +145,8 @@ fi
 ##### [assignVar](./global.sh#L33-L37) `ref val`
 
 ##### [getArg](./global.sh#L39-L46) `name`
+
+##### [RE](./global.sh#L48-L58) `pattern forSED`
 
 ---
 
