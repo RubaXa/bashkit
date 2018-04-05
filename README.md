@@ -84,16 +84,16 @@ fi
 
 #### Functions
 
-##### [execute](./exec.sh#L6-L24) `cmd [ref-status]`
+##### [execute](./exec.sh#L6-L29) `cmd [ref-status]`
 - [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 
-##### [executeStatus](./exec.sh#L26-L33) `code`
+##### [executeStatus](./exec.sh#L31-L38) `code`
 
-##### [executeIf](./exec.sh#L35-L44) `cond cmd [ref-status]`
+##### [executeIf](./exec.sh#L40-L49) `cond cmd [ref-status]`
 - cond — $Y/$EXEC_OK or $N
 - [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 
-##### [executeIfNot](./exec.sh#L46-L52) `cond cmd`
+##### [executeIfNot](./exec.sh#L51-L57) `cond cmd`
 - cond — $Y/$EXEC_OK or $N
 
 ---

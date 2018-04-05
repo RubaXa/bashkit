@@ -8,19 +8,24 @@ EXEC_ERR="1";
 execute() {
 	local __ok=1;
 	local __res;
+
 	echo -n $(logInfo "- Execute \`$1\` .. ");
 
 	if [[ ${#@} == 1 ]]; then
-		__res=`$1 >/dev/null 2>&1`;
+		__res=$(eval "$1 2>&1");
 		__ok="$?";
 	else
-		__res=`$1 >/dev/null 2>&1`;
+		__res=$(eval "$1 2>&1");
 		__ok="$?";
 		assignVar $2 $__ok;
 	fi
 
 	logInfo $(executeStatus $__ok);
-	logVerbose $res;
+	if [ $__ok -eq 0 ]; then
+		logVerbose " ∟ $__res";
+	else
+		logErr " ∟ $__res";
+	fi
 }
 
 # @param code
