@@ -36,6 +36,15 @@ if [[ $game == $Y ]]; then
 	done
 fi
 ```
+
+---
+
+### Features
+
+- AutoUpdate support
+- Easy and intuitive development
+- Logging (levels supports), Colors and Emoji 😁
+- Documentation
 <!--api-->
 ---
 
@@ -132,21 +141,23 @@ fi
 - [$Y](./global.sh#L3)
 - [$N](./global.sh#L4)
 - [$GNU_SED](./global.sh#L5)
-- [$SECOND](./global.sh#L7)
-- [$HOUR](./global.sh#L8)
-- [$ARGS](./global.sh#L10)
+- [$DIRNAME](./global.sh#L7)
+- [$FILENAME](./global.sh#L8)
+- [$SECOND](./global.sh#L10)
+- [$HOUR](./global.sh#L11)
+- [$ARGS](./global.sh#L13)
 
 #### Functions
 
-##### [default](./global.sh#L12-L20) `val`
+##### [default](./global.sh#L15-L23) `val`
 
-##### [required](./global.sh#L22-L31) `val errMsg`
+##### [required](./global.sh#L25-L34) `val errMsg`
 
-##### [assignVar](./global.sh#L33-L37) `ref val`
+##### [assignVar](./global.sh#L36-L40) `ref val`
 
-##### [getArg](./global.sh#L39-L46) `name`
+##### [getArg](./global.sh#L42-L49) `name`
 
-##### [RE](./global.sh#L48-L58) `pattern forSED`
+##### [RE](./global.sh#L51-L61) `pattern forSED`
 
 ---
 
@@ -198,6 +209,26 @@ fi
 ##### [logHead](./log.sh#L90-L93) `text`
 
 ##### [logFinish](./log.sh#L95-L112) `[status] [done=DONE] [failed=FAILED]`
+
+---
+
+### [package-json.sh](./package-json.sh)
+
+#### Constants
+- [$PKG_JSON_RAW](./package-json.sh#L14)
+- [$PKG_JSON_NAME](./package-json.sh#L15)
+- [$PKG_JSON_VERSION](./package-json.sh#L16)
+- [$PKG_JSON_DESCRIPTION](./package-json.sh#L17)
+- [$PKG_JSON_AUTHOR](./package-json.sh#L18)
+- [$PKG_JSON_MAIN](./package-json.sh#L19)
+- [$PKG_JSON_GIT_URL](./package-json.sh#L20)
+
+#### Functions
+
+##### [pkgJsonRead](./package-json.sh#L3-L6) `path`
+
+##### [pkgJsonReadProp](./package-json.sh#L8-L12) `raw prop`
+- raw — a result of `pkgJsonRead`
 
 ---
 

@@ -4,6 +4,9 @@ Y="Y"
 N="N"
 GNU_SED=$N
 
+DIRNAME=$(pwd);
+FILENAME=$(basename "$0");
+
 SECOND=$((1))
 HOUR=$(($SECOND * 60));
 
