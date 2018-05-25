@@ -41,10 +41,10 @@ fi
 
 ### Features
 
-- AutoUpdate support
-- Easy and intuitive development
+- AutoUpdate support 🚀
+- Easy and intuitive development 💡
 - Logging (levels supports), Colors and Emoji 😁
-- Documentation
+- Documentation 📑
 <!--api-->
 ---
 
