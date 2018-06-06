@@ -47,18 +47,21 @@ inputReadYesNo() {
 			chr=$def;
 		fi
 
-		colorize $COLOR_WARN "$chr";
-
 		if [[ $chr == "y" || $chr == "Y" ]]; then
+			colorize $COLOR_WARN "Yes";
 			chr=$Y;
 			break;
 		elif [[ $chr == "n" || $chr == "N" ]]; then
+			colorize $COLOR_WARN "No";
 			chr=$N;
 			break;
 		else
 			chr=$N;
 			if [[ (( $attempt < $maxAttempts )) ]]; then
+				colorize $COLOR_ERR "X";
 				echo $(colorize $COLOR_WARN "  ∟ Oops, you must press a key 'Y' or 'N', try again.");
+			else
+				colorize $COLOR_WARN "No";
 			fi
 		fi
 	done
