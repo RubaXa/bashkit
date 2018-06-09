@@ -170,9 +170,9 @@ fi
 
 ##### [inputReadChar](./input.sh#L17-L24) `text ref`
 
-##### [inputReadYesNo](./input.sh#L26-L67) `text ref [def=$N] [attempts=2]`
+##### [inputReadYesNo](./input.sh#L26-L70) `text ref [def=$N] [attempts=2]`
 
-##### [inputSelect](./input.sh#L95-L141) `text ref ...items`
+##### [inputSelect](./input.sh#L98-L144) `text ref ...items`
 - ref — will contains a selected index
 
 ---
