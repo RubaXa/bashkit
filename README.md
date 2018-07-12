@@ -51,7 +51,6 @@ fi
 ### Development
 
  - `./all.sh --bashkit-docs` — Docs generator.
-
 <!--api-->
 ---
 
@@ -308,4 +307,6 @@ fi
 
 
 ##### [recently](./recently.sh#L3-L85) `name period ...fn`
-- period — ex: `300s`, `24h` or `7d`
+- period — ex: `5m`, `24h` or `7d`
+
+

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @param name
-# @param period — ex: `300s`, `24h` or `7d`
+# @param period — ex: `5m`, `24h` or `7d`
 # @param ...fn
 recently() {
 	local __name=$1;
