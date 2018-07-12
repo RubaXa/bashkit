@@ -60,7 +60,10 @@ recently() {
 				if (( $__val > $__max && ${__exists[$__jdx]} != 1 )); then
 					__max=$__val;
 					__maxIdx=$__jdx;
-					((__idx--));
+
+					if (( $__idx >= 0 )); then
+						((__idx--));
+					fi
 				fi
 			done
 

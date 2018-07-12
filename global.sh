@@ -5,7 +5,8 @@ N="N"
 GNU_SED=$N
 USE_MD5SUM=$N;
 
-DIRNAME=$(pwd);
+PWD=$(pwd);
+DIRNAME=$(dirname $0);
 FILENAME=$(basename "$0");
 
 SECOND=$((1))

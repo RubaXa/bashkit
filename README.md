@@ -229,27 +229,28 @@ fi
 - [$Y](./global.sh#L3)
 - [$N](./global.sh#L4)
 - [$GNU_SED](./global.sh#L5)
-- [$DIRNAME](./global.sh#L8)
-- [$FILENAME](./global.sh#L9)
-- [$SECOND](./global.sh#L11)
-- [$HOUR](./global.sh#L12)
-- [$ARGS](./global.sh#L14)
+- [$PWD](./global.sh#L8)
+- [$DIRNAME](./global.sh#L9)
+- [$FILENAME](./global.sh#L10)
+- [$SECOND](./global.sh#L12)
+- [$HOUR](./global.sh#L13)
+- [$ARGS](./global.sh#L15)
 
 #### Functions
 
-##### [default](./global.sh#L16-L24) `val`
+##### [default](./global.sh#L17-L25) `val`
 
-##### [required](./global.sh#L26-L35) `val errMsg`
+##### [required](./global.sh#L27-L36) `val errMsg`
 
-##### [assignVar](./global.sh#L37-L41) `ref val`
+##### [assignVar](./global.sh#L38-L42) `ref val`
 
-##### [getArg](./global.sh#L43-L50) `name`
+##### [getArg](./global.sh#L44-L51) `name`
 
-##### [RE](./global.sh#L52-L62) `pattern forSED`
+##### [RE](./global.sh#L53-L63) `pattern forSED`
 
-##### [range](./global.sh#L64-L68) `from to`
+##### [range](./global.sh#L65-L69) `from to`
 
-##### [md5hash](./global.sh#L70-L77) `value`
+##### [md5hash](./global.sh#L71-L78) `value`
 
 ---
 
@@ -306,7 +307,7 @@ fi
 ### [recently.sh](./recently.sh)
 
 
-##### [recently](./recently.sh#L3-L85) `name period ...fn`
+##### [recently](./recently.sh#L3-L88) `name period ...fn`
 - period — ex: `5m`, `24h` or `7d`
 
 
