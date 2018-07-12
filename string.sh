@@ -18,6 +18,14 @@ stringGetMatch() {
 	fi
 }
 
+# @param regex
+# @param value
+stringGetMatches() {
+	if [[ "${@:2}" =~ $1 ]]; then
+		echo ${BASH_REMATCH[@]};
+	fi
+}
+
 # @param value
 stringTrim() {
    local trimmed="$@"

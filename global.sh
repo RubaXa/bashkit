@@ -3,6 +3,7 @@
 Y="Y"
 N="N"
 GNU_SED=$N
+USE_MD5SUM=$N;
 
 DIRNAME=$(pwd);
 FILENAME=$(basename "$0");
@@ -58,4 +59,19 @@ RE() {
 	fi
 
 	echo "$re" | sed 's/\d/[0-9]/g';
+}
+
+# @param from
+# @param to
+range() {
+	seq $1 $2;
+}
+
+# @param value
+md5hash() {
+	if [[ $USE_MD5SUM == $Y ]]; then
+		md5sum <<< "$@";
+	else
+		md5 <<< "$@";
+	fi
 }

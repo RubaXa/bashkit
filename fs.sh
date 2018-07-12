@@ -10,10 +10,10 @@ fsGetFiles() {
 
 # @param file
 fsReadFile() {
-	local _IFS=$IFS;
+	local __IFS=$IFS;
 	IFS=;
 	cat $1;
-	IFS=$_IFS;
+	IFS=$__IFS;
 }
 
 # @param file
@@ -39,4 +39,20 @@ fsReplaceInFiles() {
 		logVerbose " - $f"
 		fsReplaceInFile "$f" "$2" "$3";
 	done
+}
+
+# @param file
+fsFileExists() {
+	if [ -f $1 ]; then
+		echo $Y;
+	else
+		echo $N;
+	fi
+}
+
+# @param file
+fsReadFileIfExists() {
+	if [[ $(fsFileExists $1) == $Y ]]; then
+		fsReadFile $1;
+	fi
 }

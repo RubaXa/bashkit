@@ -38,6 +38,11 @@ bashkit() {
 		exit 1
 	fi
 
+	# md5sum support
+	if [ -x "$(command -v md5sum)" ]; then
+		USE_MD5SUM=$Y;
+	fi
+
 	# 'sed -r' support
 	`echo "foo" | sed -r 's/foo/bar/' >/dev/null 2>&1`;
 
@@ -52,6 +57,11 @@ bashkit() {
 		if [ $? -eq 0 ]; then GNU_SED=$Y; fi
 
 		logVerbose "" $(executeStatus $?);
+	fi
+
+	# Recently
+	if [ ! -d "$BASHKIT_DIR/.recently/" ]; then
+		mkdir "$BASHKIT_DIR/.recently/"
 	fi
 
 	# VERSION
@@ -102,7 +112,7 @@ bashkit() {
 				fi
 
 				# fn
-				tmp=$(stringGetMatch "^([a-zA-Z][[:alpha:]]+)\(\)" "$line")
+				tmp=$(stringGetMatch "^([a-zA-Z][a-zA-Z0-9]+)\(\)" "$line")
 				if [[ $tmp != "" ]]; then
 					fnName=$tmp;
 				fi

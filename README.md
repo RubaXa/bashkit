@@ -45,7 +45,79 @@ fi
 - Easy and intuitive development 💡
 - Logging (levels supports), Colors and Emoji 😁
 - Documentation 📑
+
+---
+
+### Development
+
+ - `./all.sh --bashkit-docs` — Docs generator.
+
 <!--api-->
+---
+
+### [risk.sh](./risk.sh)
+
+#### Constants
+- [$RISK_FLAGS](./risk.sh#L3)
+
+#### Functions
+
+##### [riskCreate](./risk.sh#L5-L13) `[branch]`
+- [branch] — create risk for git-branch
+
+##### [riskPush](./risk.sh#L15-L23) `name branch`
+- name — tarball name
+- branch — risk branch
+
+##### [riskSwitch](./risk.sh#L25-L33) `name branch`
+- name — tarball name
+- branch — risk branch
+
+##### [riskAlpha](./risk.sh#L35-L40) `name`
+- name — tarball name
+
+##### [riskRemove](./risk.sh#L42-L51) `name [branch=trb]`
+- name — tarball name
+- [branch=trb] — risk branch
+
+##### [riskAutoRemove](./risk.sh#L53-L80) `[branch]`
+- [branch] — risk branch
+
+---
+
+### [fs.sh](./fs.sh)
+
+
+##### [fsGetFiles](./fs.sh#L3-L9) `path [depth=1]`
+
+##### [fsReadFile](./fs.sh#L11-L17) `file`
+
+##### [fsWriteFile](./fs.sh#L19-L23) `file content`
+
+##### [fsReplaceInFile](./fs.sh#L25-L31) `file pattern value`
+
+##### [fsReplaceInFiles](./fs.sh#L33-L42) `path pattern value`
+
+##### [fsFileExists](./fs.sh#L44-L51) `file`
+
+##### [fsReadFileIfExists](./fs.sh#L53-L58) `file`
+
+---
+
+### [input.sh](./input.sh)
+
+
+##### [inputRead](./input.sh#L3-L9) `text ref`
+
+##### [inputReadSecure](./input.sh#L11-L15) `text ref`
+
+##### [inputReadChar](./input.sh#L17-L24) `text ref`
+
+##### [inputReadYesNo](./input.sh#L26-L70) `text ref [def=$N] [attempts=2]`
+
+##### [inputSelect](./input.sh#L98-L144) `text ref ...items`
+- ref — will contains a selected index
+
 ---
 
 ### [array.sh](./array.sh)
@@ -53,6 +125,25 @@ fi
 
 ##### [arrayIncludes](./array.sh#L3-L14) `value ...list`
 - ...list — for example `arrayIncludes "y" "x" "y"`, or `arrayIncludes $val ${list[@]}`
+
+---
+
+### [string.sh](./string.sh)
+
+
+##### [stringTest](./string.sh#L3-L11) `regex value`
+
+##### [stringGetMatch](./string.sh#L13-L19) `regex value`
+
+##### [stringGetMatches](./string.sh#L21-L27) `regex value`
+
+##### [stringTrim](./string.sh#L29-L44) `value`
+
+##### [stringLength](./string.sh#L46-L54) `value`
+
+##### [stringCutAfter](./string.sh#L56-L61) `sep text`
+
+##### [stringCutBefore](./string.sh#L63-L68) `sep text`
 
 ---
 
@@ -77,51 +168,6 @@ fi
 
 ---
 
-### [emoji.sh](./emoji.sh)
-
-
-##### [emojiStatus](./emoji.sh#L7-L19) `[name=done]`
-- [name=done] — `ok`, `err` or `done`
-
----
-
-### [exec.sh](./exec.sh)
-
-#### Constants
-- [$EXEC_OK](./exec.sh#L3)
-- [$EXEC_ERR](./exec.sh#L4)
-
-#### Functions
-
-##### [execute](./exec.sh#L6-L29) `cmd [ref-status]`
-- [ref-status] — execution result status, `$EXEC_OK` — success, else failed
-
-##### [executeStatus](./exec.sh#L31-L38) `code`
-
-##### [executeIf](./exec.sh#L40-L49) `cond cmd [ref-status]`
-- cond — $Y/$EXEC_OK or $N
-- [ref-status] — execution result status, `$EXEC_OK` — success, else failed
-
-##### [executeIfNot](./exec.sh#L51-L57) `cond cmd`
-- cond — $Y/$EXEC_OK or $N
-
----
-
-### [fs.sh](./fs.sh)
-
-
-##### [fsGetFiles](./fs.sh#L3-L9) `path [depth=1]`
-
-##### [fsReadFile](./fs.sh#L11-L17) `file`
-
-##### [fsWriteFile](./fs.sh#L19-L23) `file content`
-
-##### [fsReplaceInFile](./fs.sh#L25-L31) `file pattern value`
-
-##### [fsReplaceInFiles](./fs.sh#L33-L42) `path pattern value`
-
----
-
 ### [git.sh](./git.sh)
 
 #### Constants
@@ -135,45 +181,11 @@ fi
 
 ---
 
-### [global.sh](./global.sh)
-
-#### Constants
-- [$Y](./global.sh#L3)
-- [$N](./global.sh#L4)
-- [$GNU_SED](./global.sh#L5)
-- [$DIRNAME](./global.sh#L7)
-- [$FILENAME](./global.sh#L8)
-- [$SECOND](./global.sh#L10)
-- [$HOUR](./global.sh#L11)
-- [$ARGS](./global.sh#L13)
-
-#### Functions
-
-##### [default](./global.sh#L15-L23) `val`
-
-##### [required](./global.sh#L25-L34) `val errMsg`
-
-##### [assignVar](./global.sh#L36-L40) `ref val`
-
-##### [getArg](./global.sh#L42-L49) `name`
-
-##### [RE](./global.sh#L51-L61) `pattern forSED`
-
----
-
-### [input.sh](./input.sh)
+### [time.sh](./time.sh)
 
 
-##### [inputRead](./input.sh#L3-L9) `text ref`
-
-##### [inputReadSecure](./input.sh#L11-L15) `text ref`
-
-##### [inputReadChar](./input.sh#L17-L24) `text ref`
-
-##### [inputReadYesNo](./input.sh#L26-L70) `text ref [def=$N] [attempts=2]`
-
-##### [inputSelect](./input.sh#L98-L144) `text ref ...items`
-- ref — will contains a selected index
+##### [timeParse](./time.sh#L7-L19) `value`
+- value — ex.: `2s`, `5m`, `24h` or `5d`
 
 ---
 
@@ -212,6 +224,36 @@ fi
 
 ---
 
+### [global.sh](./global.sh)
+
+#### Constants
+- [$Y](./global.sh#L3)
+- [$N](./global.sh#L4)
+- [$GNU_SED](./global.sh#L5)
+- [$DIRNAME](./global.sh#L8)
+- [$FILENAME](./global.sh#L9)
+- [$SECOND](./global.sh#L11)
+- [$HOUR](./global.sh#L12)
+- [$ARGS](./global.sh#L14)
+
+#### Functions
+
+##### [default](./global.sh#L16-L24) `val`
+
+##### [required](./global.sh#L26-L35) `val errMsg`
+
+##### [assignVar](./global.sh#L37-L41) `ref val`
+
+##### [getArg](./global.sh#L43-L50) `name`
+
+##### [RE](./global.sh#L52-L62) `pattern forSED`
+
+##### [range](./global.sh#L64-L68) `from to`
+
+##### [md5hash](./global.sh#L70-L77) `value`
+
+---
+
 ### [package-json.sh](./package-json.sh)
 
 #### Constants
@@ -232,49 +274,38 @@ fi
 
 ---
 
-### [risk.sh](./risk.sh)
+### [exec.sh](./exec.sh)
 
 #### Constants
-- [$RISK_FLAGS](./risk.sh#L3)
+- [$EXEC_OK](./exec.sh#L3)
+- [$EXEC_ERR](./exec.sh#L4)
 
 #### Functions
 
-##### [riskCreate](./risk.sh#L5-L13) `[branch]`
-- [branch] — create risk for git-branch
+##### [execute](./exec.sh#L6-L29) `cmd [ref-status]`
+- [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 
-##### [riskPush](./risk.sh#L15-L23) `name branch`
-- name — tarball name
-- branch — risk branch
+##### [executeStatus](./exec.sh#L31-L38) `code`
 
-##### [riskSwitch](./risk.sh#L25-L33) `name branch`
-- name — tarball name
-- branch — risk branch
+##### [executeIf](./exec.sh#L40-L49) `cond cmd [ref-status]`
+- cond — $Y/$EXEC_OK or $N
+- [ref-status] — execution result status, `$EXEC_OK` — success, else failed
 
-##### [riskAlpha](./risk.sh#L35-L40) `name`
-- name — tarball name
-
-##### [riskRemove](./risk.sh#L42-L51) `name [branch=trb]`
-- name — tarball name
-- [branch=trb] — risk branch
-
-##### [riskAutoRemove](./risk.sh#L53-L80) `[branch]`
-- [branch] — risk branch
+##### [executeIfNot](./exec.sh#L51-L57) `cond cmd`
+- cond — $Y/$EXEC_OK or $N
 
 ---
 
-### [string.sh](./string.sh)
+### [emoji.sh](./emoji.sh)
 
 
-##### [stringTest](./string.sh#L3-L11) `regex value`
+##### [emojiStatus](./emoji.sh#L7-L19) `[name=done]`
+- [name=done] — `ok`, `err` or `done`
 
-##### [stringGetMatch](./string.sh#L13-L19) `regex value`
+---
 
-##### [stringTrim](./string.sh#L21-L36) `value`
-
-##### [stringLength](./string.sh#L38-L46) `value`
-
-##### [stringCutAfter](./string.sh#L48-L53) `sep text`
-
-##### [stringCutBefore](./string.sh#L55-L60) `sep text`
+### [recently.sh](./recently.sh)
 
 
+##### [recently](./recently.sh#L3-L85) `name period ...fn`
+- period — ex: `300s`, `24h` or `7d`
