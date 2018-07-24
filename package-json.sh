@@ -11,6 +11,10 @@ pkgJsonReadProp() {
 	stringGetMatch "\"$1\"[^:]*:[^\"]*\"([^\"]*)" "$(default "$2" "$PKG_JSON_RAW")";
 }
 
+_pkgJsonReadDeps() {
+	stringGetMatch "\"$1\"[^:]*:[^\{]*\{([^\}]+)" "$(default "$2" "$PKG_JSON_RAW")";
+}
+
 PKG_JSON_RAW=$(pkgJsonRead);
 PKG_JSON_NAME=$(pkgJsonReadProp "name");
 PKG_JSON_VERSION=$(pkgJsonReadProp "version");
@@ -18,3 +22,4 @@ PKG_JSON_DESCRIPTION=$(pkgJsonReadProp "description");
 PKG_JSON_AUTHOR=$(pkgJsonReadProp "author");
 PKG_JSON_MAIN=$(pkgJsonReadProp "main");
 PKG_JSON_GIT_URL=$(pkgJsonReadProp "url");
+PKG_JSON_DEPS_HASH=$(md5hash "$(_pkgJsonReadDeps "dependencies")|$(_pkgJsonReadDeps "devDependencies")|$(_pkgJsonReadDeps "peerDependencies")");

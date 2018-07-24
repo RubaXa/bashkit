@@ -38,11 +38,6 @@ bashkit() {
 		exit 1
 	fi
 
-	# md5sum support
-	if [ -x "$(command -v md5sum)" ]; then
-		USE_MD5SUM=$Y;
-	fi
-
 	# 'sed -r' support
 	`echo "foo" | sed -r 's/foo/bar/' >/dev/null 2>&1`;
 

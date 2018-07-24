@@ -23,9 +23,17 @@ gitIsCurrentBranch() {
 
 # @param name
 gitSwitchBranch() {
-	branch="$1";
-	needSwicth="$(gitIsCurrentBranch $branch)";
+	local branch="$1";
+	local needSwicth="$(gitIsCurrentBranch $branch)";
 	executeIfNot $needSwicth "git checkout $branch 2>/dev/null || git checkout -b $branch origin/$branch"
+}
+
+gitHasChanges() {
+	if [[ `git status --porcelain` ]]; then
+		echo $Y;
+	else
+		echo $N;
+	fi
 }
 
 GIT_BRANCH=$(gitCurrentBranch)

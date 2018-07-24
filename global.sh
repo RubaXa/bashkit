@@ -59,7 +59,7 @@ RE() {
 		re=`echo $re | sed 's/\\\d\\+/[0-9][0-9]*/g'`;
 	fi
 
-	echo "$re" | sed 's/\d/[0-9]/g';
+	echo "$re" | sed 's/\\d/[0-9]/g';
 }
 
 # @param from
@@ -67,6 +67,11 @@ RE() {
 range() {
 	seq $1 $2;
 }
+
+# md5sum support
+if [ -x "$(command -v md5sum)" ]; then
+	USE_MD5SUM=$Y;
+fi
 
 # @param value
 md5hash() {
