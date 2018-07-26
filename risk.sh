@@ -125,7 +125,7 @@ riskGetList() {
 
 riskExec() {
 	case "$1" in
-		risk-create)      riskCreate $2; ;;
+		risk-create)      riskCreate $2 $3; ;;
 
 		risk-push)        riskPush $2 $3; ;;
 		risk-push-prod)   riskPush $2 "production"; ;;
