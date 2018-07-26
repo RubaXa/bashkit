@@ -111,7 +111,7 @@ riskGetList() {
 		if [[ "$line" =~ .\[[0-9]+\].(.+) ]]; then
 			branch="${BASH_REMATCH[1]}"
 		else
-			if [[ "$branch" != "$target" ]]; then
+			if [[ "$branch" == "$target" ]]; then
 				if [[ "$line" =~ (.).\[.{3,}\].(.+) ]]; then
 					list+=("${BASH_REMATCH[2]}");
 				fi
