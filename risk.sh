@@ -3,20 +3,32 @@
 RISK_FLAGS="";
 
 # @param [branch] — create risk for git-branch
+# @param [deploy] — push & switch created tarball to risk branch
 riskCreate() {
-	branch=$(default "$1" "$GIT_BRANCH");
+	local branch=$(default "$1" "$GIT_BRANCH");
+	local deploy=$(default "$2" "$N");
+
 	logInfo "- Create risk for git-branch: $branch (risk flags: $(default "${RISK_FLAGS}" '[[empty]]'))";
 	gitFetchAll;
 	gitSwitchBranch $branch;
 	gitPull;
 	risk-deploy-create $RISK_FLAGS -b $branch;
+
+	if [[ "$deploy" != $N ]]; then
+		local list=($(riskGetList "trb"));
+		local tarball=${list[${#list[@]}-1]};
+
+		logInfo "Push & Switch: $tarball -> $deploy";
+		riskPush $tarball $deploy;
+		riskSwitch $tarball $deploy;
+	fi
 }
 
 # @param name — tarball name
 # @param branch — risk branch
 riskPush() {
-	name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
-	branch=$(required "$2" "[riskPush] Risk-branch must be defined (second argument)");
+	local name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
+	local branch=$(required "$2" "[riskPush] Risk-branch must be defined (second argument)");
 
 	logInfo "- Risk push: $name -> $branch";
 	risk-deploy-push $RISK_FLAGS --push-to-branch $branch --push-filename $name;
@@ -25,8 +37,8 @@ riskPush() {
 # @param name — tarball name
 # @param branch — risk branch
 riskSwitch() {
-	name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
-	branch=$(required "$2" "[riskPush] Risk branch must be defined (second argument)");
+	local name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
+	local branch=$(required "$2" "[riskPush] Risk branch must be defined (second argument)");
 
 	logInfo "- Risk switch: $name -> $branch";
 	risk-deploy-switch --branch $branch --switch-to-folder $name;
@@ -34,7 +46,7 @@ riskSwitch() {
 
 # @param name — tarball name
 riskAlpha() {
-	name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
+	local name=$(required "$1" "[riskPush] tarball name must be defined (first argument)");
 	riskPush "$name" "alphatest"
 	riskSwitch "$name" "alphatest"
 }
@@ -42,8 +54,8 @@ riskAlpha() {
 # @param name — tarball name
 # @param [branch=trb] — risk branch
 riskRemove() {
-	name="$1"
-	branch=$(default "$2" "trb");
+	local name="$1"
+	local branch=$(default "$2" "trb");
 
 	echo -n $(logInfo "- Risk remove "$name" ($branch) ..");
 	`risk-deploy-clear --branch $branch --clear-file $name >/dev/null 2>\&`;
@@ -52,9 +64,14 @@ riskRemove() {
 
 # @param [branch] — risk branch
 riskAutoRemove() {
-	target="$1"
+	local target="$1";
+	local branch="";
+	local name="";
+	local __IFS=$IFS;
+
 	IFS=$'\n';
 	list=`risk-deploy-show | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`;
+
 	for line in $list; do
 		if [[ "$line" =~ .\[[0-9]+\].(.+) ]]; then
 			branch="${BASH_REMATCH[1]}"
@@ -77,6 +94,33 @@ riskAutoRemove() {
 			fi
 		fi
 	done
+
+	IFS=$__IFS;
+}
+
+# @param [branch] — risk branch
+riskGetList() {
+	local target="$1"
+	local branch="";
+	local list=();
+
+	IFS=$'\n';
+	local riskShow=`risk-deploy-show | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`;
+
+	for line in $riskShow; do
+		if [[ "$line" =~ .\[[0-9]+\].(.+) ]]; then
+			branch="${BASH_REMATCH[1]}"
+		else
+			if [[ "$branch" != "$target" ]]; then
+				if [[ "$line" =~ (.).\[.{3,}\].(.+) ]]; then
+					list+=("${BASH_REMATCH[2]}");
+				fi
+			fi
+		fi
+	done
+
+	IFS=$__IFS;
+	echo ${list[@]};
 }
 
 riskExec() {

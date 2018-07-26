@@ -61,25 +61,29 @@ fi
 
 #### Functions
 
-##### [riskCreate](./risk.sh#L5-L13) `[branch]`
+##### [riskCreate](./risk.sh#L5-L25) `[branch] [deploy]`
 - [branch] — create risk for git-branch
+- [deploy] — push & switch created tarball to risk branch
 
-##### [riskPush](./risk.sh#L15-L23) `name branch`
+##### [riskPush](./risk.sh#L27-L35) `name branch`
 - name — tarball name
 - branch — risk branch
 
-##### [riskSwitch](./risk.sh#L25-L33) `name branch`
+##### [riskSwitch](./risk.sh#L37-L45) `name branch`
 - name — tarball name
 - branch — risk branch
 
-##### [riskAlpha](./risk.sh#L35-L40) `name`
+##### [riskAlpha](./risk.sh#L47-L52) `name`
 - name — tarball name
 
-##### [riskRemove](./risk.sh#L42-L51) `name [branch=trb]`
+##### [riskRemove](./risk.sh#L54-L63) `name [branch=trb]`
 - name — tarball name
 - [branch=trb] — risk branch
 
-##### [riskAutoRemove](./risk.sh#L53-L80) `[branch]`
+##### [riskAutoRemove](./risk.sh#L65-L99) `[branch]`
+- [branch] — risk branch
+
+##### [riskGetList](./risk.sh#L101-L124) `[branch]`
 - [branch] — risk branch
 
 ---
@@ -170,7 +174,7 @@ fi
 ### [git.sh](./git.sh)
 
 #### Constants
-- [$GIT_BRANCH](./git.sh#L31)
+- [$GIT_BRANCH](./git.sh#L39)
 
 #### Functions
 
@@ -250,20 +254,21 @@ fi
 
 ##### [range](./global.sh#L65-L69) `from to`
 
-##### [md5hash](./global.sh#L71-L78) `value`
+##### [md5hash](./global.sh#L76-L83) `value`
 
 ---
 
 ### [package-json.sh](./package-json.sh)
 
 #### Constants
-- [$PKG_JSON_RAW](./package-json.sh#L14)
-- [$PKG_JSON_NAME](./package-json.sh#L15)
-- [$PKG_JSON_VERSION](./package-json.sh#L16)
-- [$PKG_JSON_DESCRIPTION](./package-json.sh#L17)
-- [$PKG_JSON_AUTHOR](./package-json.sh#L18)
-- [$PKG_JSON_MAIN](./package-json.sh#L19)
-- [$PKG_JSON_GIT_URL](./package-json.sh#L20)
+- [$PKG_JSON_RAW](./package-json.sh#L18)
+- [$PKG_JSON_NAME](./package-json.sh#L19)
+- [$PKG_JSON_VERSION](./package-json.sh#L20)
+- [$PKG_JSON_DESCRIPTION](./package-json.sh#L21)
+- [$PKG_JSON_AUTHOR](./package-json.sh#L22)
+- [$PKG_JSON_MAIN](./package-json.sh#L23)
+- [$PKG_JSON_GIT_URL](./package-json.sh#L24)
+- [$PKG_JSON_DEPS_HASH](./package-json.sh#L25)
 
 #### Functions
 
