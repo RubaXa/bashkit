@@ -100,7 +100,7 @@ riskAutoRemove() {
 
 # @param [branch] — risk branch
 riskGetList() {
-	local target="$1"
+	local target=$(default "$1" "trb");
 	local branch="";
 	local list=();
 
@@ -126,6 +126,7 @@ riskGetList() {
 riskExec() {
 	case "$1" in
 		risk-create)      riskCreate $2 $3; ;;
+		risk-list)        riskCreate $2; ;;
 
 		risk-push)        riskPush $2 $3; ;;
 		risk-push-prod)   riskPush $2 "production"; ;;
