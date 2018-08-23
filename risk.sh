@@ -125,7 +125,42 @@ riskGetList() {
 
 riskExec() {
 	case "$1" in
-		risk-create)      riskCreate $2 $3; ;;
+		# Create risk
+		risk) riskCreate $2 $3; ;;
+		risk-create) riskCreate $2 $3; ;;
+
+		# Create risk and push&switch (default "alphatest")
+		+risk)
+			local __branch=$(default "$3" "alphatest");
+
+			logInfo "[$__branch] create, push & switch";
+			riskCreate $2 $__branch;
+			riskGetList $__branch;
+			;;
+
+		# Push to "production" (default)
+		++risk)
+			local __branch=$(default "$3" "production");
+			local __switch;
+
+			riskPush $2 $__branch;
+			inputReadYesNo "Risk switch: $2 -> $__branch" $__switch;
+
+			if [[ $__switch == $Y ]]; then
+				riskSwitch $2 $__branch;
+			fi
+			;;
+
+		# Switch on "production" (default)
+		^^risk)
+			local __branch=$(default "$3" "production");
+			riskSwitch $2 $__branch;
+			;;
+
+		# Show risk
+		risk?) risk-deploy-show; ;;
+		risk-show) risk-deploy-show; ;;
+
 		risk-list)        riskGetList $2; ;;
 
 		risk-push)        riskPush $2 $3; ;;
@@ -134,8 +169,6 @@ riskExec() {
 		risk-switch)      riskSwitch $2 $3; ;;
 		risk-switch-prod) riskSwitch $2 "production"; ;;
 
-		risk-alpha)       riskAlpha $2; ;;
-		risk-show)        risk-deploy-show; ;;
 		risk-remove)      riskRemove $2 $3; ;;
 		risk-auto-remove) riskAutoRemove $2; ;;
 	esac
