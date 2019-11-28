@@ -73,9 +73,12 @@ riskAutoRemove() {
 	list=`risk-deploy-show | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`;
 
 	for line in $list; do
+		logVerbose "[risk-auto-remove] Try parse line: '${line}'";
+
 		if [[ "$line" =~ .\[[0-9]+\].(.+) ]]; then
 			branch="${BASH_REMATCH[1]}"
 			name="";
+			logVerbose "[risk-auto-remove] Detected branch: '${branch}'";
 		else
 			if [[ "$branch" != "" ]]; then
 				if [[ $target != "" && $target != $branch ]]; then
@@ -87,8 +90,10 @@ riskAutoRemove() {
 				fi
 
 				if [[ "$line" =~ (.).\[.{3,}\].(.+) ]]; then
+					logVerbose "[risk-auto-remove] Try parse trb: '${line}'";
 					if [[ "${BASH_REMATCH[1]}" != "*" ]]; then
 						name="${BASH_REMATCH[2]}";
+						logVerbose "[risk-auto-remove] trb name parsed: '${name}'";
 					fi
 				fi
 			fi
