@@ -45,6 +45,7 @@ fi
 - Easy and intuitive development 💡
 - Logging (levels supports), Colors and Emoji 😁
 - Documentation 📑
+- Verbose mode ✴️ (just add `--verbose`)
 
 ---
 
@@ -314,5 +315,3 @@ fi
 
 ##### [recently](./recently.sh#L3-L88) `name period ...fn`
 - period — ex: `5m`, `24h` or `7d`
-
-
