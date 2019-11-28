@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASHKIT_DIR="$HOME/.bashkit";
-BASHKIT_VERSION="0.21.4"
+BASHKIT_VERSION="0.21.5"
 
 source "$BASHKIT_DIR/global.sh";
 source "$BASHKIT_DIR/array.sh";

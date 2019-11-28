@@ -82,6 +82,7 @@ riskAutoRemove() {
 		else
 			if [[ "$branch" != "" ]]; then
 				if [[ $target != "" && $target != $branch ]]; then
+					logVerbose "[risk-auto-remove] Branch target '${target}' != '${branch}'"
 					continue
 				fi
 
@@ -95,6 +96,8 @@ riskAutoRemove() {
 						name="${BASH_REMATCH[2]}";
 						logVerbose "[risk-auto-remove] trb name parsed (v1): '${name}'";
 					fi
+				else
+					logVerbose "[risk-auto-remove] trb parse name (v1): skipped";
 				fi
 
 				if [[ "$line" =~ (.)..{20}.(.+) ]]; then
@@ -103,7 +106,11 @@ riskAutoRemove() {
 						name="${BASH_REMATCH[2]}";
 						logVerbose "[risk-auto-remove] trb name parsed (v2): '${name}'";
 					fi
+				else
+					logVerbose "[risk-auto-remove] trb parse name (v2): skipped";
 				fi
+			else
+				logVerbose "[risk-auto-remove] Branch name not defined"
 			fi
 		fi
 	done
