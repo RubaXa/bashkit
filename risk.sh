@@ -90,10 +90,18 @@ riskAutoRemove() {
 				fi
 
 				if [[ "$line" =~ (.).\[.{3,}\].(.+) ]]; then
-					logVerbose "[risk-auto-remove] Try parse trb: '${line}'";
+					logVerbose "[risk-auto-remove] Try parse trb (v1): '${line}'";
 					if [[ "${BASH_REMATCH[1]}" != "*" ]]; then
 						name="${BASH_REMATCH[2]}";
-						logVerbose "[risk-auto-remove] trb name parsed: '${name}'";
+						logVerbose "[risk-auto-remove] trb name parsed (v1): '${name}'";
+					fi
+				fi
+
+				if [[ "$line" =~ (.).\d+-\d+-\d+.\d+:\d+:\d+.(.+) ]]; then
+					logVerbose "[risk-auto-remove] Try parse trb (v2): '${line}'";
+					if [[ "${BASH_REMATCH[1]}" != "*" ]]; then
+						name="${BASH_REMATCH[2]}";
+						logVerbose "[risk-auto-remove] trb name parsed (v2): '${name}'";
 					fi
 				fi
 			fi
