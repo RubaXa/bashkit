@@ -97,7 +97,7 @@ riskAutoRemove() {
 					fi
 				fi
 
-				if [[ "$line" =~ (.).[0-9-]+.[0-9:]+.(.+) ]]; then
+				if [[ "$line" =~ (.)..{20}.(.+) ]]; then
 					logVerbose "[risk-auto-remove] Try parse trb (v2): '${line}'";
 					if [[ "${BASH_REMATCH[1]}" != "*" ]]; then
 						name="${BASH_REMATCH[2]}";
