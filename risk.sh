@@ -135,6 +135,10 @@ riskGetList() {
 				if [[ "$line" =~ (.).\[.{3,}\].(.+) ]]; then
 					list+=("${BASH_REMATCH[2]}");
 				fi
+
+				if [[ "$line" =~ (.)..{20}.(.+) ]]; then
+					list+=("${BASH_REMATCH[2]}");
+				fi
 			fi
 		fi
 	done
