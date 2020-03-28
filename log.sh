@@ -79,10 +79,18 @@ logVerbose() {
 	log "verbose" "$@";
 }
 
+prevHrLineLen=0;
+
 # @param ...msg
 hrLine() {
 	local len=$(stringLength $@);
-	echo "$@";
+	if (( $len == 0 )); then
+		len=$prevHrLineLen;
+	else
+		prevHrLineLen=$len
+		echo "$@";
+	fi
+
 	for ((i=0; i<$len; i++)); do echo -n "-"; done
 	echo "";
 }
