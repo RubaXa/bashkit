@@ -1,7 +1,5 @@
 #!/bin/bash
 
-RISK_FLAGS="";
-
 # @param [branch] — create risk for git-branch
 # @param [deploy] — push & switch created tarball to risk branch
 riskCreate() {
@@ -197,3 +195,5 @@ riskExec() {
 		risk-auto-remove) riskAutoRemove $2; ;;
 	esac
 }
+
+riskCreate;
