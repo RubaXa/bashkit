@@ -195,5 +195,3 @@ riskExec() {
 		risk-auto-remove) riskAutoRemove $2; ;;
 	esac
 }
-
-riskCreate;
