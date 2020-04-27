@@ -1,5 +1,7 @@
 #!/bin/bash
 
+RISK_FLAGS="";
+
 # @param [branch] — create risk for git-branch
 # @param [deploy] — push & switch created tarball to risk branch
 riskCreate() {
@@ -39,7 +41,7 @@ riskSwitch() {
 	local branch=$(required "$2" "[riskPush] Risk branch must be defined (second argument)");
 
 	logInfo "- Risk switch: $name -> $branch";
-	risk-deploy-switch $RISK_FLAGS --branch $branch --switch-to-folder $name;
+	risk-deploy-switch --branch $branch --switch-to-folder $name;
 }
 
 # @param name — tarball name
@@ -56,7 +58,7 @@ riskRemove() {
 	local branch=$(default "$2" "trb");
 
 	echo -n $(logInfo "- Risk remove "$name" ($branch) ..");
-	`risk-deploy-clear $RISK_FLAGS --branch $branch --clear-file $name >/dev/null 2>\&`;
+	`risk-deploy-clear --branch $branch --clear-file $name >/dev/null 2>\&`;
 	echo "" $(executeStatus $?);
 }
 
@@ -68,7 +70,7 @@ riskAutoRemove() {
 	local __IFS=$IFS;
 
 	IFS=$'\n';
-	list=`risk-deploy-show $RISK_FLAGS | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`;
+	list=`risk-deploy-show | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`;
 
 	for line in $list; do
 		logVerbose "[risk-auto-remove] Try parse line: '${line}'";
@@ -123,7 +125,7 @@ riskGetList() {
 	local list=();
 
 	IFS=$'\n';
-	local riskShow=`risk-deploy-show $RISK_FLAGS | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`;
+	local riskShow=`risk-deploy-show | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`;
 
 	for line in $riskShow; do
 		if [[ "$line" =~ .\[[0-9]+\].(.+) ]]; then
@@ -181,7 +183,7 @@ riskExec() {
 
 		# Show risk
 		risk?) risk-deploy-show; ;;
-		risk-show) risk-deploy-show $RISK_FLAGS; ;;
+		risk-show) risk-deploy-show; ;;
 
 		risk-list)        riskGetList $2; ;;
 
